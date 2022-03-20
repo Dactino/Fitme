@@ -1,5 +1,5 @@
 <template>
-  <form @submit.prevent="buscarCategoria" @keypress.enter="submit">
+  <form @submit.prevent="addEjercicio" @keypress.enter="submit">
     Nombre Ejercicio:
     <input type="text" v-model="newEjercicio.nombre" />
     Repeticiones Ejercicio:
@@ -13,10 +13,8 @@
 <script>
 import { ref, push, onValue } from "firebase/database";
 import db from "./bd/bd_config.js";
-
 export default {
   name: "newEjercicio",
-
   data() {
     return {
       newEjercicio: {
@@ -31,7 +29,6 @@ export default {
   methods: {
     addEjercicio() {
       this.newEjercicio.imagen = this.newEjercicio.nombre + ".jpg";
-
       //con set() se eliminan las anteriores entradas, mientras que con update se modifican, y con push se añaden
       push(ref(db, "Ejercicios"), {
         nombre: this.newEjercicio.nombre,
@@ -41,7 +38,6 @@ export default {
       });
       this.newEjercicio.nombre = "";
     },
-
     //Con la siguiente función se intenta conseguir el id de la categoría cuyo nombre coincida con el proporcionado
     buscarCategoria() {
       onValue(
