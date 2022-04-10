@@ -8,7 +8,7 @@
 
 <script>
 import { ref, push } from "firebase/database";
-import db from "./bd/bd_config.js"
+import db from "../bd/bd_config.js"
 
 export default {
   name: "newCategoriaEjercicio",

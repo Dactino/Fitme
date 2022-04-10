@@ -6,13 +6,14 @@
     <input type="text" v-model="newEjercicio.repeticiones" />
     Nombre categoria:
     <input type="text" v-model="newEjercicio.categoria" />
-    <input type="submit" value="Enviar" />
+    <!-- This example requires Tailwind CSS v2.0+ -->
+<button type="button" class="inline-flex items-center px-3 py-1.5 border border-transparent text-xs font-medium rounded-full shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Enviar</button>
   </form>
 </template>
 
 <script>
 import { ref, push, onValue } from "firebase/database";
-import db from "./bd/bd_config.js";
+import db from "../bd/bd_config.js";
 export default {
   name: "newEjercicio",
   data() {
