@@ -17,7 +17,7 @@
             Making the world a better place through changing people's lifestyle
             a bit
           </p>
-          <div class="flex space-x-6">
+          <div class="flex pl-5 space-x-6 md:pl-0">
             <a
               v-for="item in navigation.social"
               :key="item.name"
