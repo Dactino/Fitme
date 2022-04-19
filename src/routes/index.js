@@ -3,6 +3,8 @@ import {createRouter, createWebHistory} from "vue-router";
 import Login from '../pages/PLogin'
 import Register from '../pages/PRegister'
 import Home from '../pages/PHome'
+import Routines from '../pages/PRoutines'
+import Test from '../pages/PNavbar'
 
 const routes = [
         {
@@ -19,6 +21,16 @@ const routes = [
         path: '/',
         name: 'Home',
         component: Home
+    },
+    {
+        path: '/routines',
+        name: 'Routines',
+        component: Routines
+    },
+    {
+        path: '/test',
+        name: 'Test',
+        component: Test
     }
 ]
 

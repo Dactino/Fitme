@@ -9,7 +9,7 @@
 -->
   <div class="flex flex-col justify-center min-h-full py-12 sm:px-6 lg:px-8">
     <div class="sm:mx-auto sm:w-full sm:max-w-md">
-      <p v-if="error != false">{{ error }}</p>
+      <p v-if="error.value != false">{{ error.value }}</p>
       <h2 class="mt-6 text-3xl font-extrabold text-center text-gray-900">
         Register with email and password
       </h2>
@@ -17,7 +17,11 @@
 
     <div class="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
       <div class="px-4 py-8 bg-white shadow sm:rounded-lg sm:px-10">
-        <form class="space-y-6" @submit.prevent="register">
+        <form
+          class="space-y-6"
+          @submit.prevent="register()"
+          @keypress.enter="register()"
+        >
           <div>
             <label for="email" class="block text-sm font-medium text-gray-700">
               Email address
@@ -160,22 +164,26 @@
 </template>
 
 <script setup>
-import firebase from "firebase/compat/app";
+import { auth } from "../bd/bd";
 import { useRouter } from "vue-router";
+import { ref } from "vue";
 
+const email = ref("");
+const password = ref("");
 const router = useRouter();
+const error = ref(false);
 
 function register() {
-  firebase
-    .auth()
-    .createUserWithEmailAndPassword(this.email, this.password)
+  auth
+    .createUserWithEmailAndPassword(email.value, password.value)
     .then(() => {
       console.log("Successfully registered!!");
-      this.error = false;
-      router.push("/login");
+      error.value = false;
+      router.push("/");
     })
     .catch((err) => {
-      this.error = err.message;
+      error.value = err.message;
+      console.log(err);
     });
 }
 </script>

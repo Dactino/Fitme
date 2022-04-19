@@ -13,25 +13,14 @@
       <div
         class="grid justify-center grid-cols-2 mt-12 gap-x-6 gap-y-12 sm:grid-cols-4 lg:mt-16 lg:grid-cols-4 lg:gap-x-8 lg:gap-y-16"
       >
-        <div v-for="feature in features" :key="feature.name">
+        <div v-for="feature in props.features" :key="feature.name">
           <div class="flex-col">
-            <span
-              class="flex items-center justify-center w-12 h-12 m-auto rounded-md bg-fgreen"
-            >
-              <component
-                :is="feature.icon"
-                class="w-6 h-6 text-white"
-                aria-hidden="true"
-              />
-            </span>
+            <VFeature :icon="feature.icon" />
           </div>
           <div class="mt-1 text-center">
             <h3 class="text-lg font-medium text-white">
               {{ feature.name }}
             </h3>
-            <p class="mt-2 text-base text-purple-200">
-              {{ feature.description }}
-            </p>
           </div>
         </div>
       </div>
@@ -40,27 +29,13 @@
 </template>
 
 <script setup>
-import EasyIcon from "../icons/EasyIcon.vue";
-import QuickIcon from "../icons/QuickIcon.vue";
-import ShieldIcon from "../icons/ShieldIcon.vue";
-import EffectiveIcon from "../icons/EffectiveIcon.vue";
+import { defineProps } from "vue";
 
-const features = [
-  {
-    name: "Easy",
-    icon: EasyIcon,
+import VFeature from "@/components/VFeature.vue";
+
+const props = defineProps({
+  features: {
+    type: Object,
   },
-  {
-    name: "Quick",
-    icon: QuickIcon,
-  },
-  {
-    name: "Reliable",
-    icon: ShieldIcon,
-  },
-  {
-    name: "Effective",
-    icon: EffectiveIcon,
-  },
-];
+});
 </script>

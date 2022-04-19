@@ -16,17 +16,24 @@
         </div>
         <div class="-my-2 -mr-2 md:hidden">
           <PopoverButton
-            class="inline-flex items-center justify-center p-2 text-gray-400 bg-white rounded-md hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500"
+            class="inline-flex items-center justify-center p-2 bg-white rounded-md text-fgreen hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500"
           >
             <span class="sr-only">Open menu</span>
             <MenuIcon class="w-6 h-6" aria-hidden="true" />
           </PopoverButton>
         </div>
-        <div
-          class="items-center justify-end hidden space-x-2 md:flex md:flex-1 lg:w-0"
-        >
-          <VButton variant="primary"> Sign in </VButton>
-          <VButton variant="terciary"> Sign up </VButton>
+        <div class="items-center justify-end hidden md:flex md:flex-1 lg:w-0">
+          <div class="space-x-2" v-if="!isLoggedIn">
+            <a href="/login"> <VButton variant="primary"> Sign in </VButton></a>
+
+            <a href="/register">
+              <VButton variant="terciary"> Sign up </VButton></a
+            >
+          </div>
+
+          <VButton v-else variant="secondary" @click="logOut">
+            Log out
+          </VButton>
         </div>
       </div>
     </div>
@@ -57,7 +64,7 @@
               </div>
               <div class="-mr-2">
                 <PopoverButton
-                  class="inline-flex items-center justify-center p-2 text-gray-400 bg-white rounded-md hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500"
+                  class="inline-flex items-center justify-center p-2 bg-white rounded-md text-fgreen hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500"
                 >
                   <span class="sr-only">Close menu</span>
                   <XCircleIcon class="w-10 h-10" aria-hidden="true" />
@@ -135,7 +142,7 @@ import { Popover, PopoverButton, PopoverPanel } from "@headlessui/vue";
 import XCircleIcon from "../icons/XCircleIcon.vue";
 import MenuIcon from "../icons/MenuIcon.vue";
 import { ref } from "vue";
-import firebase from "firebase/compat/app";
+import { auth } from "../bd/bd";
 //import { useRouter } from "vue-router";
 import VButton from "./VButton.vue";
 
@@ -172,14 +179,15 @@ const resources = [
 const isLoggedIn = ref(true);
 
 // runs after firebase is initialized
-firebase.auth().onAuthStateChanged(function (user) {
-  if (user) {
-    isLoggedIn.value = true; // if we have a user
-  } else {
+auth.onAuthStateChanged(function (user) {
+  if (!user) {
     isLoggedIn.value = false; // if we do not
+  } else {
+    isLoggedIn.value = true; // if we have a user
   }
 });
+
 const logOut = () => {
-  firebase.auth().signOut();
+  auth.signOut();
 };
 </script>

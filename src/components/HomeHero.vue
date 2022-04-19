@@ -23,7 +23,7 @@
         from our summer small-batch release while they're still in stock.
       </p>
       <div class="flex-col space-x-0 space-y-2 lg:space-x-32 md:space-x-6">
-        <a href="#" class="inline-block text-base font-medium"
+        <a href="/routines" class="inline-block text-base font-medium"
           ><VButton variant="primary"> Get Started </VButton></a
         >
         <a href="#" class="inline-block text-base font-medium"

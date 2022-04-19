@@ -1,16 +1,15 @@
 <template>
-  <div class="flex flex-col justify-center min-h-full py-12">
+  <div class="flex flex-col justify-center min-h-full py-12 text-center">
     <div class="sm:mx-auto sm:w-full sm:max-w-md">
       <h2 class="mt-6 text-3xl font-extrabold text-center text-fgreen">
         Log in with email and password
       </h2>
     </div>
-    <p class="text-red-600" v-if="error != false">{{ error }}</p>
     <div class="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
       <div class="px-4 py-8 bg-white shadow sm:rounded-lg sm:px-10">
         <form
           class="space-y-6"
-          @submit.prevent="login"
+          @submit.prevent="login()"
           @keypress.enter="submit"
         >
           <div>
@@ -46,7 +45,7 @@
               />
             </div>
           </div>
-
+          <p class="text-red-600" v-if="error != false">{{ error }}</p>
           <div class="flex items-center justify-between">
             <div class="flex items-center">
               <input
@@ -102,49 +101,42 @@
   </div>
 </template>
 
-<script>
-import firebase from "firebase/compat/app";
-import { useRouter } from "vue-router";
+<script setup>
+import { auth } from "../bd/bd";
 import VButton from "@/components/VButton.vue";
 import GoogleIcon from "@/icons/GoogleIcon.vue";
+import { ref } from "vue";
+import { useRouter } from "vue-router";
 
-export default {
-  data() {
-    return {
-      email: "",
-      password: "",
-      router: useRouter(),
-      error: false,
-    };
-  },
-  methods: {
-    login() {
-      firebase
-        .auth()
-        .signInWithEmailAndPassword(this.email, this.password)
-        .then(() => {
-          console.log("Successfully logged in!!");
-          this.router.push("/");
-          this.error = false;
-        })
-        .catch((error) => {
-          switch (error.code) {
-            case "auth/invalid-email":
-              this.error = "Invalid email";
-              break;
-            case "auth/user-not-found":
-              this.error = "No account with that email was found";
-              break;
-            case "auth/wrong-password":
-              this.error = "Incorrect password";
-              break;
-            default:
-              this.error = "Email or password was incorrect";
-              break;
-          }
-        });
-    },
-  },
-  components: { VButton, GoogleIcon },
-};
+const email = ref("");
+const password = ref("");
+const error = ref(false);
+const router = useRouter();
+
+function login() {
+  auth
+    .signInWithEmailAndPassword(email.value, password.value)
+    .then(() => {
+      console.log("Successfully logged in!!");
+      error.value = false;
+      router.push("/");
+    })
+    .catch((er) => {
+      switch (er.code) {
+        case "auth/invalid-email":
+          error.value = "Invalid email";
+          break;
+        case "auth/user-not-found":
+          error.value = "No account with that email was found";
+          break;
+        case "auth/wrong-password":
+          error.value = "Incorrect password";
+          break;
+        default:
+          error.value = "Email or password was incorrect";
+          break;
+      }
+    });
+  password.value = "";
+}
 </script>
