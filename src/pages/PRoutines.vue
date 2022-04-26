@@ -1,34 +1,36 @@
-<!-- This example requires Tailwind CSS v2.0+ -->
 <template>
   <TheLayout>
-    <div class="px-4 py-24 mx-auto bg-white max-w-7xl sm:px-6 lg:px-8">
-      <h2
-        class="text-3xl font-extrabold text-fgreen sm:text-5xl sm:leading-none sm:tracking-tight lg:text-6xl"
-      >
-        Pricing plans for teams of all sizes
-      </h2>
-      <p class="max-w-2xl mt-6 text-xl text-fpurple">
-        Choose an affordable plan that's packed with the best features for
-        engaging your audience, creating customer loyalty, and driving sales.
-      </p>
-
-      <div
-        class="flex flex-wrap justify-center gap-5 m-auto mt-12 lg:justify-between lg:space-y-0"
-      >
-        <RoutinesCard
-          v-for="category in categories"
-          :key="category.id"
-          :category="category"
-        />
+    <h1 class="text-4xl text-fgreen">{{ category.name }}</h1>
+    <div>
+      <div v-for="routine in routines" :key="routine.id">
+        {{ routine.days.length }}
+        <ARoutine :routine="routine" :days="routine.days.lenght" />
       </div>
     </div>
   </TheLayout>
 </template>
 
 <script setup>
-import RoutinesCard from "@/components/RoutinesCard.vue";
+import { ref, onBeforeMount } from "vue";
+import { useRoute, useRouter } from "vue-router";
+import { getroutineCategory } from "@/bd/bd.js";
+import { getRoutineFromCategory } from "@/bd/bd.js";
 import TheLayout from "@/components/TheLayout.vue";
-import { useLoadroutineCategories } from "@/bd/bd.js";
+import ARoutine from "@/components/ARoutine.vue";
 
-const categories = useLoadroutineCategories();
+const route = useRoute();
+const categoryId = route.query.category;
+console.log(categoryId);
+
+const routines = getRoutineFromCategory(categoryId);
+console.log(routines.value);
+
+const category = ref([]);
+
+onBeforeMount(async () => {
+  category.value = await getroutineCategory(categoryId);
+  if (category.value == null) {
+    useRouter().push({ path: "/404" });
+  }
+});
 </script>

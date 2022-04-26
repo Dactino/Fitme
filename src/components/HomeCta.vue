@@ -15,7 +15,7 @@
         <a href="#" class="flex items-center justify-center">
           <VButton variant="primary"> Contact us </VButton>
         </a>
-        <a href="#" class="flex items-center justify-center">
+        <a href="/categories" class="flex items-center justify-center">
           <VButton variant="secondary"> Get started </VButton>
         </a>
       </div>

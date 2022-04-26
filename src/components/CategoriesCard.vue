@@ -1,5 +1,7 @@
 <template>
-  <a href="#">
+  <router-link
+    :to="{ path: '/routines', query: { category: props.category.id } }"
+  >
     <div
       class="relative flex flex-col p-8 border shadow-sm hover:bg-fgreen-dark1 bg-fgreen border-fpurple rounded-2xl"
     >
@@ -19,7 +21,7 @@
         {{ props.category.name }}
       </h1>
     </div>
-  </a>
+  </router-link>
 </template>
 <script setup>
 import { defineProps } from "vue";

@@ -25,7 +25,7 @@
                 {{ props.feature.description }}
               </p>
               <div class="mt-6">
-                <a href="/routines">
+                <a href="/categories">
                   <VButton variant="primary">Get started</VButton>
                 </a>
               </div>

@@ -29,13 +29,104 @@ export const createroutineCategories = category => {
 }
 
 export const getroutineCategory = async id => {
-    const category = await routineCategoriesCollection.doc(id).get()
+    const category = await routineCategoriesCollection.doc(id).get() 
     return category.exists ? category.data() : null
 }
 
-export const useLoadroutineCategories = () => {
+//Se puede extraer todas las rutinas y ejercicios cuando el cliente carga la página, y con cada función extraer una u otra tabla y retornarla, haciendo que la carga de estos sea mucho más rápida
+
+export const getRoutineCategories = () => {
     const categories = ref([])
     const close = routineCategoriesCollection.onSnapshot(snapshot => {
+        categories.value = snapshot.docs.map(doc => ({id: doc.id, ...doc.data()}))
+    }) 
+    onUnmounted(close)
+    return categories
+}
+
+//Routines
+const routinesCollection = db.collection('routines')
+
+export const createRoutine = routine => {
+    return routinesCollection.add(routine)
+}
+
+export const getRoutine = async id => {
+    const routine = await routinesCollection.doc(id).get()
+    return routine.exists ? routine.data() : null
+}
+
+export const getRoutineFromCategory = category => {
+    const routines = ref([])
+    routinesCollection.where("category", "==", category).onSnapshot(snapshot => {
+        routines.value = snapshot.docs.map(doc => ({id: doc.id, ...doc.data()}))
+    }) 
+    //onUnmounted(close)
+    return routines
+}
+
+export const getRoutines = () => {
+    const routines = ref([])
+    const close = routinesCollection.onSnapshot(snapshot => {
+        routines.value = snapshot.docs.map(doc => ({id: doc.id, ...doc.data()}))
+    }) 
+    onUnmounted(close)
+    return routines
+}
+
+//Exercises
+const exercisesCollection = db.collection('exercises')
+
+export const createExercise = exercise => {
+    return exercisesCollection.add(exercise)
+}
+
+export const deleteExercise = exerciseId => {
+    return exercisesCollection.doc(exerciseId).delete()
+}
+
+export const getExercise = async id => {
+    const exercise = await exercisesCollection.doc(id).get()
+    return exercise.exists ? exercise.data() : null
+}
+
+export const getExerciseFromCategory = category => {
+    const exercises = ref([])
+    exercisesCollection.where("category", "==", category).onSnapshot(snapshot => {
+        exercises.value = snapshot.docs.map(doc => ({id: doc.id, ...doc.data()}))
+    }) 
+    //onUnmounted(close)
+    return exercises
+}
+
+export const getExercises = () => {
+    const exercises = ref([])
+    const close = exercisesCollection.onSnapshot(snapshot => {
+        exercises.value = snapshot.docs.map(doc => ({id: doc.id, ...doc.data()}))
+    }) 
+    onUnmounted(close)
+    return exercises
+}
+
+export const getDayExercises = ids => {
+    const exercises = ref([])
+    const close = exercisesCollection.onSnapshot(snapshot => {
+        snapshot.docs.map(doc => ({id: doc.id, ...doc.data()})).forEach(exercise => {
+            if (ids.includes(exercise.id)) {
+                exercises.value.push(exercise)
+            }
+        })
+    }) 
+    onUnmounted(close)
+    return exercises
+}
+
+//Exercise Categories
+const exerciseCategoriesCollection = db.collection('exerciseCategories')
+
+export const getExerciseCategories = () => {
+    const categories = ref([])
+    const close = exerciseCategoriesCollection.onSnapshot(snapshot => {
         categories.value = snapshot.docs.map(doc => ({id: doc.id, ...doc.data()}))
     }) 
     onUnmounted(close)

@@ -2,14 +2,14 @@
   <div class="flex flex-col justify-center min-h-full py-12 text-center">
     <div class="sm:mx-auto sm:w-full sm:max-w-md">
       <h2 class="mt-6 text-3xl font-extrabold text-center text-fgreen">
-        Log in with email and password
+        Register with email and password
       </h2>
     </div>
     <div class="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
       <div class="px-4 py-8 bg-white shadow sm:rounded-lg sm:px-10">
         <form
           class="space-y-6"
-          @submit.prevent="login()"
+          @submit.prevent="register()"
           @keypress.enter="submit"
         >
           <div>
@@ -71,9 +71,9 @@
             </VButton>
           </div>
         </form>
-        <p class="pt-6 text-black">
-          ¿No tienes cuenta?
-          <a href="/register" class="text-fgreen hover:underline">Regístrate</a>
+        <p class="pt-6 text-fpurple">
+          ¿Ya tienes cuenta?
+          <a href="/login" class="text-fgreen hover:underline">Inicia sesión</a>
         </p>
         <div class="mt-6">
           <div class="relative">
@@ -105,41 +105,27 @@
 </template>
 
 <script setup>
-import { auth } from "../bd/bd";
 import VButton from "@/components/VButton.vue";
 import GoogleIcon from "@/icons/GoogleIcon.vue";
-import { ref } from "vue";
+import { auth } from "../bd/bd";
 import { useRouter } from "vue-router";
+import { ref } from "vue";
 
 const email = ref("");
 const password = ref("");
-const error = ref(false);
 const router = useRouter();
+const error = ref(false);
 
-function login() {
+function register() {
   auth
-    .signInWithEmailAndPassword(email.value, password.value)
+    .createUserWithEmailAndPassword(email.value, password.value)
     .then(() => {
-      console.log("Successfully logged in!!");
+      console.log("Successfully registered!!");
       error.value = false;
       router.push("/");
     })
-    .catch((er) => {
-      switch (er.code) {
-        case "auth/invalid-email":
-          error.value = "Invalid email";
-          break;
-        case "auth/user-not-found":
-          error.value = "No account with that email was found";
-          break;
-        case "auth/wrong-password":
-          error.value = "Incorrect password";
-          break;
-        default:
-          error.value = "Email or password was incorrect";
-          break;
-      }
+    .catch((err) => {
+      error.value = err.message;
     });
-  password.value = "";
 }
 </script>
