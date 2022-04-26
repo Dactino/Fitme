@@ -4,7 +4,7 @@
       <div v-for="day in props.routine.days" :key="day">
         <div v-for="exercises in day" :key="exercises">
           <div v-for="exerciseId in exercises" :key="exerciseId">
-            <AExercise :exerciseId="exerciseId" />
+            <ADay :exerciseId="exerciseId" />
           </div>
         </div>
       </div>
@@ -30,7 +30,7 @@
 import { defineProps } from "vue";
 import PlusIcon from "@/icons/PlusIcon.vue";
 import VButton from "@/components/VButton.vue";
-import AExercise from "@/components/AExercise.vue";
+import ADay from "@/components/ADay.vue";
 
 const props = defineProps({
   routine: {
@@ -42,6 +42,4 @@ const props = defineProps({
     default: false,
   },
 });
-
-console.log(props.routine.days);
 </script>
