@@ -20,10 +20,10 @@ import ARoutine from "@/components/ARoutine.vue";
 
 const route = useRoute();
 const categoryId = route.query.category;
-console.log(categoryId);
 
 const routines = getRoutineFromCategory(categoryId);
-console.log(routines.value);
+
+console.log(routines);
 
 const category = ref([]);
 

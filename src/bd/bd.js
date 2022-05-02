@@ -51,6 +51,10 @@ export const createRoutine = routine => {
     return routinesCollection.add(routine)
 }
 
+export const deleteRoutine = id => {
+    return routinesCollection.doc(id).delete()
+}
+
 export const getRoutine = async id => {
     const routine = await routinesCollection.doc(id).get()
     return routine.exists ? routine.data() : null
@@ -76,6 +80,11 @@ export const getRoutines = () => {
 
 //Exercises
 const exercisesCollection = db.collection('exercises')
+const exercises = ref([])
+    const close = exercisesCollection.onSnapshot(snapshot => {
+        exercises.value = snapshot.docs.map(doc => ({id: doc.id, ...doc.data()}))
+    }) 
+    onUnmounted(close)
 
 export const createExercise = exercise => {
     return exercisesCollection.add(exercise)
@@ -85,40 +94,31 @@ export const deleteExercise = exerciseId => {
     return exercisesCollection.doc(exerciseId).delete()
 }
 
-export const getExercise = async id => {
-    const exercise = await exercisesCollection.doc(id).get()
-    return exercise.exists ? exercise.data() : null
+export const getExercise = (id) => {
+    return exercises.value.filter((ex) => {
+        id = id.trim()
+        // console.log(ex.id, '-', id, ex.id == id);
+        return ex.id == id;
+    })
 }
 
 export const getExerciseFromCategory = category => {
-    const exercises = ref([])
-    exercisesCollection.where("category", "==", category).onSnapshot(snapshot => {
-        exercises.value = snapshot.docs.map(doc => ({id: doc.id, ...doc.data()}))
-    }) 
+    return exercises.value.filter((ex) => {
+        return ex.category == category;
+      })
     //onUnmounted(close)
-    return exercises
 }
 
 export const getExercises = () => {
-    const exercises = ref([])
-    const close = exercisesCollection.onSnapshot(snapshot => {
-        exercises.value = snapshot.docs.map(doc => ({id: doc.id, ...doc.data()}))
-    }) 
-    onUnmounted(close)
     return exercises
 }
 
 export const getDayExercises = ids => {
-    const exercises = ref([])
-    const close = exercisesCollection.onSnapshot(snapshot => {
-        snapshot.docs.map(doc => ({id: doc.id, ...doc.data()})).forEach(exercise => {
-            if (ids.includes(exercise.id)) {
-                exercises.value.push(exercise)
-            }
-        })
-    }) 
-    onUnmounted(close)
-    return exercises
+    const returned = ref([]);
+    ids.forEach((exercise) => {
+    returned.value.push(getExercise(exercise));
+});
+    return returned.value
 }
 
 //Exercise Categories
