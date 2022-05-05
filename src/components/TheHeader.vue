@@ -31,8 +31,8 @@
             <a href="/login"> <VButton variant="primary"> Sign in </VButton></a>
 
             <a href="/register">
-              <VButton variant="terciary"> Sign up </VButton></a
-            >
+              <VButton variant="terciary"> Sign up </VButton>
+            </a>
           </div>
         </div>
       </div>
@@ -48,7 +48,7 @@
     >
       <PopoverPanel
         focus
-        class="absolute top-0 right-0 w-full p-2 transition origin-top-right transform inset-x-90 md:w-1/3"
+        class="absolute top-0 right-0 z-50 w-full p-2 transition origin-top-right transform inset-x-50 md:w-1/3"
       >
         <div
           class="bg-white divide-y-2 rounded-lg shadow-lg ring-1 ring-black ring-opacity-5 divide-gray-50"
@@ -137,7 +137,7 @@ import XCircleIcon from "../icons/XCircleIcon.vue";
 import AvatarIcon from "../icons/AvatarIcon.vue";
 import { ref } from "vue";
 //import { useRouter } from "vue-router";
-import VButton from "./VButton.vue";
+import VButton from "@/components/VButton.vue";
 
 const resources = [
   {

@@ -31,26 +31,14 @@
       </div>
     </div>
     <div class="flex gap-8 flex-inline">
-      <div v-for="index in daysNumber" :key="index">
-        Exercises Day {{ index }}
+      <div v-for="index in 7" :key="index">
+        {{ days[index - 1] }}
         <AdminRoutineFormDay
           :exerciseCategories="exerciseCategories"
           :exercises="exercises"
           :index="index - 1"
           @changeInExercises="changeInExercises"
         />
-        <p
-          v-for="exercise in newRoutine.days[index]"
-          :key="exercise[0]"
-          class="text-black"
-        >
-          <AExercise :exercise="exercise[0]" />
-          exercise
-        </p>
-      </div>
-      <div class="flex flex-col gap-8">
-        <button @click="addDayNumber">Añadir dia</button>
-        <button @click="delDayNumber">Eliminar dia</button>
       </div>
     </div>
     <div class="px-4 py-3 text-right bg-gray-50 sm:px-6">
@@ -66,7 +54,7 @@
 
 <script setup>
 import { defineProps, ref, defineEmits } from "vue";
-import { deleteRoutine, createRoutine } from "@/bd/bd.js";
+import { deleteRoutine, createRoutine, getExercise } from "@/bd/bd.js";
 import { days } from "@/assets/variables.js";
 import PlusIcon from "@/icons/PlusIcon.vue";
 import AdminRoutineFormDay from "@/components/AdminRoutineFormDay.vue";
@@ -95,42 +83,22 @@ const newRoutine = {
   days: {},
 };
 
-const daysNumber = ref(3);
+days.forEach((day, index) => {
+  newRoutine.days[index] = { exercises: ["Descanso"] };
+});
 
 const checkOperation = ref(false);
 
 function changeInExercises(DayExercises, index) {
   newRoutine.days[index] = DayExercises.value;
-  console.log("routine-", newRoutine.days);
-}
-
-function addDayNumber() {
-  if (daysNumber.value < 5) {
-    daysNumber.value++;
-  } else console.log("No se puede exceder el número máximo de días permitidos");
-}
-
-function delDayNumber() {
-  if (daysNumber.value > 2) {
-    daysNumber.value--;
-    if (newRoutine.days[daysNumber.value] != null) {
-      newRoutine.days.pop();
-      console.log("eliminado con exito");
-    } else {
-      console.log("no existe");
-    }
-  } else console.log("No se puede exceder el número mínimo de días permitidos");
 }
 
 function checkOp() {
   checkOperation.value = true;
-  console.log(checkOperation.value);
-  console.log(newRoutine);
 }
 
 function cancelOp() {
   checkOperation.value = false;
-  console.log(checkOperation.value);
 }
 
 function addRoutine() {

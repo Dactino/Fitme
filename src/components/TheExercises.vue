@@ -11,7 +11,7 @@
         <li v-for="exercise in exercises" :key="exercise.id" class="bg-white">
           <AExercise
             :exercise="exercise"
-            v-if="exercise.category == category.id"
+            v-if="exercise.category == category.id && exercise.id != 'Descanso'"
           />
         </li>
       </ul>
