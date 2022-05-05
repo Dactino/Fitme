@@ -1,9 +1,7 @@
 <template>
   <Popover class="relative bg-fpurple">
     <div class="px-4 mx-auto max-w-7xl sm:px-6">
-      <div
-        class="flex items-center justify-between py-6 md:justify-start md:space-x-10"
-      >
+      <div class="flex items-center justify-between py-6 md:space-x-10">
         <div class="flex justify-start lg:w-0 lg:flex-1">
           <a href="/">
             <span class="sr-only">Workflow</span>
@@ -14,26 +12,28 @@
             />
           </a>
         </div>
-        <div class="-my-2 -mr-2 md:hidden">
+        <div class="" v-if="isLogged">
           <PopoverButton
-            class="inline-flex items-center justify-center p-2 bg-white rounded-md text-fgreen hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500"
+            class="inline-flex items-center justify-center p-2 rounded-full text-fgreen hover:bg-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500"
           >
-            <span class="sr-only">Open menu</span>
-            <MenuIcon class="w-6 h-6" aria-hidden="true" />
+            <span
+              class="inline-block overflow-hidden bg-gray-100 rounded-full h-14 w-14"
+            >
+              <AvatarIcon class="w-full h-full" />
+            </span>
           </PopoverButton>
         </div>
-        <div class="items-center justify-end hidden md:flex md:flex-1 lg:w-0">
-          <div class="space-x-2" v-if="!isLoggedIn">
+        <div
+          class="items-center justify-end hidden md:flex md:flex-1 lg:w-0"
+          v-else
+        >
+          <div class="space-x-2">
             <a href="/login"> <VButton variant="primary"> Sign in </VButton></a>
 
             <a href="/register">
               <VButton variant="terciary"> Sign up </VButton></a
             >
           </div>
-
-          <VButton v-else variant="secondary" @click="logOut">
-            Log out
-          </VButton>
         </div>
       </div>
     </div>
@@ -48,7 +48,7 @@
     >
       <PopoverPanel
         focus
-        class="absolute inset-x-0 top-0 p-2 transition origin-top-right transform md:hidden"
+        class="absolute top-0 right-0 w-full p-2 transition origin-top-right transform inset-x-90 md:w-1/3"
       >
         <div
           class="bg-white divide-y-2 rounded-lg shadow-lg ring-1 ring-black ring-opacity-5 divide-gray-50"
@@ -93,29 +93,22 @@
           </div>
           <div class="px-5 py-6 space-y-6">
             <div class="grid grid-cols-2 gap-y-4 gap-x-8">
-              <a
-                href="#"
+              <router-link
+                to="/trainer"
+                v-if="isAdmin"
                 class="text-base font-medium text-gray-900 hover:text-gray-700"
               >
-                Pricing
-              </a>
-
-              <a
-                href="#"
+                Administrate site
+              </router-link>
+              <router-link
+                to="/profile"
+                v-if="isLogged"
                 class="text-base font-medium text-gray-900 hover:text-gray-700"
               >
-                Docs
-              </a>
-              <a
-                v-for="item in resources"
-                :key="item.name"
-                :href="item.href"
-                class="text-base font-medium text-gray-900 hover:text-gray-700"
-              >
-                {{ item.name }}
-              </a>
+                Profile
+              </router-link>
             </div>
-            <div v-if="!isLoggedIn">
+            <div v-if="!isLogged">
               <a href="/register" class="flex items-center justify-center">
                 <VButton variant="secondary" class="w-full"> Sign up </VButton>
               </a>
@@ -138,11 +131,11 @@
 </template>
 
 <script setup>
+import { isLogged, logOut, isAdmin } from "@/bd/auth";
 import { Popover, PopoverButton, PopoverPanel } from "@headlessui/vue";
 import XCircleIcon from "../icons/XCircleIcon.vue";
-import MenuIcon from "../icons/MenuIcon.vue";
+import AvatarIcon from "../icons/AvatarIcon.vue";
 import { ref } from "vue";
-import { auth } from "../bd/bd";
 //import { useRouter } from "vue-router";
 import VButton from "./VButton.vue";
 
@@ -171,23 +164,4 @@ const resources = [
     href: "#",
   },
 ];
-
-//Logout and control of the login
-
-//const router = useRouter();
-
-const isLoggedIn = ref(true);
-
-// runs after firebase is initialized
-auth.onAuthStateChanged(function (user) {
-  if (!user) {
-    isLoggedIn.value = false; // if we do not
-  } else {
-    isLoggedIn.value = true; // if we have a user
-  }
-});
-
-const logOut = () => {
-  auth.signOut();
-};
 </script>

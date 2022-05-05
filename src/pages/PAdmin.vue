@@ -20,7 +20,13 @@
 
 <script setup>
 import * as functions from "@/bd/bd.js";
+import { isAdmin } from "@/bd/auth";
 import TheLayout from "@/components/TheLayout.vue";
+import { useRouter } from "vue-router";
 
 const items = [{ name: "routines" }, { name: "exercises" }];
+
+if (!isAdmin.value) {
+  useRouter().push("/404");
+}
 </script>

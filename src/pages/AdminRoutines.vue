@@ -21,6 +21,8 @@
 
 <script setup>
 import { ref } from "vue";
+import { useRouter } from "vue-router";
+import { isAdmin } from "@/bd/auth";
 import {
   createRoutine,
   deleteRoutine,
@@ -35,6 +37,10 @@ import ExercisesPerCategory from "@/components/ExercisesPerCategory.vue";
 import AdminRoutineForm from "@/components/AdminRoutineForm.vue";
 import TheContinueAlert from "@/components/TheContinueAlert.vue";
 import VButton from "@/components/VButton.vue";
+
+if (!isAdmin.value) {
+  useRouter().push("/404");
+}
 
 const routineCategories = getRoutineCategories();
 

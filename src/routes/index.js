@@ -3,6 +3,7 @@ import {createRouter, createWebHistory} from "vue-router";
 import Login from '../pages/PLogin'
 import Register from '../pages/PRegister'
 import Home from '../pages/PHome'
+import Profile from '../pages/PProfile'
 import Routines from '../pages/PRoutines'
 import Categories from '../pages/PCategories'
 import Trainer from '../pages/PAdmin.vue'
@@ -25,6 +26,11 @@ const routes = [
         path: '/',
         name: 'Home',
         component: Home
+    },
+    {
+        path: '/profile',
+        name: 'Profile',
+        component: Profile
     },
     {
         path: '/routines',

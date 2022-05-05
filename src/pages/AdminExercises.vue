@@ -9,6 +9,8 @@
 </template>
 
 <script setup>
+import { useRouter } from "vue-router";
+import { isAdmin } from "@/bd/auth";
 import {
   createExercise,
   getExerciseCategories,
@@ -18,6 +20,10 @@ import {
 import AExercise from "@/components/AExercise.vue";
 import VButton from "@/components/VButton.vue";
 import AdminExerciseForm from "@/components/AdminExerciseForm.vue";
+
+if (!isAdmin.value) {
+  useRouter().push("/404");
+}
 
 const categories = getExerciseCategories();
 
