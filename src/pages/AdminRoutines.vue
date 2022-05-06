@@ -22,6 +22,7 @@
       :exercises="exercises"
       :routineCategories="routineCategories"
       :exerciseCategories="exerciseCategories"
+      @addRoutine="addRoutine"
     />
   </div>
 </template>
@@ -70,5 +71,10 @@ function delRoutine(id) {
   deleteRoutine(id);
   checkOperation.value[0] = false;
   checkOperation.value.pop();
+}
+
+function addRoutine(newRoutine) {
+  createRoutine(newRoutine);
+  console.log("Success");
 }
 </script>

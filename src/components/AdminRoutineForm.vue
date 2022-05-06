@@ -37,11 +37,18 @@
         <div v-for="index in 7" :key="index">
           {{ days[index - 1] }}
           <AdminRoutineFormDay
-            :exerciseCategories="exerciseCategories"
-            :exercises="exercises"
+            :exerciseCategories="props.exerciseCategories"
             :index="index - 1"
-            @changeInExercises="changeInExercises"
+            @addExercise="addExercise"
           />
+          <div>
+            <div v-for="i in dayIds[index - 1].exercises.length" :key="i">
+              <AExercise :exercise="dayIds[index - 1].exercises[i - 1][0]" />
+              <VButton @click="delExercise(i - 1, index - 1)">
+                Eliminar Ejercicio
+              </VButton>
+            </div>
+          </div>
         </div>
       </div>
       <div class="px-4 py-3 text-right bg-gray-50 sm:px-6">
@@ -58,14 +65,21 @@
 
 <script setup>
 import { defineProps, ref, defineEmits } from "vue";
-import { deleteRoutine, createRoutine, getExercise } from "@/bd/bd.js";
+import {
+  deleteRoutine,
+  createRoutine,
+  getExercise,
+  getDayExercises,
+} from "@/bd/bd.js";
 import { days } from "@/assets/variables.js";
 import PlusIcon from "@/icons/PlusIcon.vue";
 import AdminRoutineFormDay from "@/components/AdminRoutineFormDay.vue";
 import TheContinueAlert from "@/components/TheContinueAlert.vue";
 import ADay from "@/components/ADay.vue";
+import AExercise from "@/components/AExercise.vue";
+import VButton from "@/components/VButton.vue";
 
-defineProps({
+const props = defineProps({
   routineCategories: {
     type: Object,
     required: true,
@@ -80,25 +94,28 @@ defineProps({
   },
 });
 
-const dayExercises = ref([]);
+const emit = defineEmits(["addRoutine"]);
 
 const newRoutine = {
   category: "",
-  days: {},
+  days: [
+    { exercises: ["Descanso"] },
+    { exercises: ["Descanso"] },
+    { exercises: ["Descanso"] },
+    { exercises: ["Descanso"] },
+    { exercises: ["Descanso"] },
+    { exercises: ["Descanso"] },
+    { exercises: ["Descanso"] },
+  ],
 };
 
 function deleteDays() {
   days.forEach((day, index) => {
-    newRoutine.days[index] = { exercises: ["Descanso"] };
+    newRoutine.days[index].exercises = ["Descanso"];
+    dayIds.value[index].exercises = ["Descanso"];
   });
 }
-
-deleteDays();
 const checkOperation = ref(false);
-
-function changeInExercises(DayExercises, index) {
-  newRoutine.days[index] = DayExercises.value;
-}
 
 function checkOp() {
   checkOperation.value = true;
@@ -109,8 +126,42 @@ function cancelOp() {
 }
 
 function addRoutine() {
-  createRoutine(newRoutine);
+  emit("addRoutine", newRoutine);
   checkOperation.value = false;
   deleteDays();
 }
+
+//Operations with the exercises and the new Routine
+
+function addExercise(exerciseId, index) {
+  if (newRoutine.days[index].exercises[0] == "Descanso") {
+    newRoutine.days[index].exercises.splice(0, 1);
+  }
+  newRoutine.days[index].exercises.push(exerciseId);
+  dayIds.value[index].exercises = getDayExercises(
+    newRoutine.days[index].exercises
+  );
+  console.log(newRoutine);
+}
+
+function delExercise(position, index) {
+  if (newRoutine.days[index].exercises.length == 1) {
+    newRoutine.days[index].exercises = ["Descanso"];
+    dayIds.value[index].exercises = ["Descanso"];
+  } else {
+    newRoutine.days[index].exercises.splice(position, 1);
+    dayIds.value[index].exercises.splice(position, 1);
+  }
+  console.log(dayIds);
+}
+
+const dayIds = ref([
+  { exercises: ["Descanso"] },
+  { exercises: ["Descanso"] },
+  { exercises: ["Descanso"] },
+  { exercises: ["Descanso"] },
+  { exercises: ["Descanso"] },
+  { exercises: ["Descanso"] },
+  { exercises: ["Descanso"] },
+]);
 </script>
