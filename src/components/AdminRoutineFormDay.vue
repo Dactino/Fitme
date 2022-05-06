@@ -14,9 +14,9 @@
       <PlusIcon class="w-auto h-5" />
     </button>
     <div v-if="dayExercises != 'Descanso'">
-      <div v-for="exercise in dayExercises" :key="exercise[0]">
-        <AExercise :exercise="exercise[0]" />
-        <VButton> Eliminar Ejercicio </VButton>
+      <div v-for="index in dayExercises.length" :key="index">
+        <AExercise :exercise="dayExercises[index - 1][0]" />
+        <VButton @click="delExercise(index - 1)"> Eliminar Ejercicio </VButton>
       </div>
     </div>
     <div v-else>Descanso</div>
@@ -31,7 +31,7 @@ import AExercise from "@/components/AExercise.vue";
 import VButton from "@/components/VButton.vue";
 import PlusIcon from "@/icons/PlusIcon.vue";
 
-const emit = defineEmits(["changeInExercises"]);
+const emit = defineEmits(["changeInExercises", "delExercise", "addExercise"]);
 
 const props = defineProps({
   exerciseCategories: {
@@ -64,8 +64,13 @@ function addExercise(exerciseId) {
 }
 
 function delExercise(position) {
-  if (dayIdsExercises.value.exercises.length == 1)
-    dayIdsExercises.value.exercises = ["Descanso"];
+  if (dayIdsExercises.value.exercises.length == 1) {
+    dayIdsExercises.value.exercises = "Descanso";
+    dayExercises.value = "Descanso";
+  } else {
+    dayIdsExercises.value.exercises.splice(position, 1);
+    dayExercises.value = getDayExercises(dayIdsExercises.value.exercises);
+  }
   emit("changeInExercises", dayIdsExercises, props.index);
 }
 </script>

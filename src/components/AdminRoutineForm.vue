@@ -1,53 +1,57 @@
 <template>
-  <TheContinueAlert
-    v-if="checkOperation"
-    messageTitle="Add routine"
-    @cancelOperation="cancelOp"
-    @continueOperation="addRoutine"
-  />
-  <div class="overflow-hidden shadow sm:rounded-md">
-    <div class="px-4 py-5 bg-white sm:p-6">
-      <div class="grid grid-cols-6 gap-6">
-        <div class="col-span-6 sm:col-span-3">
-          <label for="category" class="block text-sm font-medium text-gray-700"
-            >Categoria de la rutina</label
-          >
-          <select
-            id="category"
-            name="category"
-            v-model="newRoutine.category"
-            autocomplete="category-name"
-            class="block w-full px-3 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-          >
-            <option
-              :value="category.id"
-              v-for="category in routineCategories"
-              :key="category.name"
+  <div>
+    <TheContinueAlert
+      v-if="checkOperation"
+      messageTitle="Add routine"
+      @cancelOperation="cancelOp"
+      @continueOperation="addRoutine"
+    />
+    <div class="shadow sm:rounded-md">
+      <div class="px-4 py-5 bg-white sm:p-6">
+        <div class="grid grid-cols-6 gap-6">
+          <div class="col-span-6 sm:col-span-3">
+            <label
+              for="category"
+              class="block text-sm font-medium text-gray-700"
+              >Categoria de la rutina</label
             >
-              {{ category.name }}
-            </option>
-          </select>
+            <select
+              id="category"
+              name="category"
+              v-model="newRoutine.category"
+              autocomplete="category-name"
+              class="block w-full px-3 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+            >
+              <option
+                :value="category.id"
+                v-for="category in routineCategories"
+                :key="category.name"
+              >
+                {{ category.name }}
+              </option>
+            </select>
+          </div>
         </div>
       </div>
-    </div>
-    <div class="flex gap-8 flex-inline">
-      <div v-for="index in 7" :key="index">
-        {{ days[index - 1] }}
-        <AdminRoutineFormDay
-          :exerciseCategories="exerciseCategories"
-          :exercises="exercises"
-          :index="index - 1"
-          @changeInExercises="changeInExercises"
-        />
+      <div class="flex gap-8 flex-inline">
+        <div v-for="index in 7" :key="index">
+          {{ days[index - 1] }}
+          <AdminRoutineFormDay
+            :exerciseCategories="exerciseCategories"
+            :exercises="exercises"
+            :index="index - 1"
+            @changeInExercises="changeInExercises"
+          />
+        </div>
       </div>
-    </div>
-    <div class="px-4 py-3 text-right bg-gray-50 sm:px-6">
-      <button
-        @click="checkOp"
-        class="inline-flex justify-center px-4 py-2 text-sm font-medium text-white bg-indigo-600 border border-transparent rounded-md shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-      >
-        Save
-      </button>
+      <div class="px-4 py-3 text-right bg-gray-50 sm:px-6">
+        <button
+          @click="checkOp"
+          class="inline-flex justify-center px-4 py-2 text-sm font-medium text-white bg-indigo-600 border border-transparent rounded-md shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+        >
+          Save
+        </button>
+      </div>
     </div>
   </div>
 </template>
@@ -83,10 +87,13 @@ const newRoutine = {
   days: {},
 };
 
-days.forEach((day, index) => {
-  newRoutine.days[index] = { exercises: ["Descanso"] };
-});
+function deleteDays() {
+  days.forEach((day, index) => {
+    newRoutine.days[index] = { exercises: ["Descanso"] };
+  });
+}
 
+deleteDays();
 const checkOperation = ref(false);
 
 function changeInExercises(DayExercises, index) {
@@ -104,5 +111,6 @@ function cancelOp() {
 function addRoutine() {
   createRoutine(newRoutine);
   checkOperation.value = false;
+  deleteDays();
 }
 </script>
