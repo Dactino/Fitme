@@ -33,8 +33,6 @@ export const getroutineCategory = async id => {
     return category.exists ? category.data() : null
 }
 
-//Se puede extraer todas las rutinas y ejercicios cuando el cliente carga la página, y con cada función extraer una u otra tabla y retornarla, haciendo que la carga de estos sea mucho más rápida
-
 export const getRoutineCategories = () => {
     const categories = ref([])
     const close = routineCategoriesCollection.onSnapshot(snapshot => {
@@ -131,4 +129,33 @@ export const getExerciseCategories = () => {
     }) 
     onUnmounted(close)
     return categories
+}
+
+//Routines from Users
+const usersRoutinesCollection = db.collection('usersRoutines')
+
+export const createUserRoutine = routine => {
+    routine.user = auth.currentUser.uid
+    delete routine.id
+    delete routine.category
+    return usersRoutinesCollection.add(routine)
+}
+
+export const deleteUserRoutine = userRoutineId => {
+    return usersRoutinesCollection.doc(userRoutineId).delete()
+}
+
+export const modifyUserRoutine = (routine, id) => {
+    console.log(id, 'modifyUserRoutine');
+    deleteUserRoutine(id)
+    return createUserRoutine(routine)
+}
+
+export const getUserRoutines = () => {
+    const routines = ref([])
+    const close = usersRoutinesCollection.where("user", "==", auth.currentUser.uid).onSnapshot(snapshot => {
+        routines.value = snapshot.docs.map(doc => ({id: doc.id, ...doc.data()}))
+    }) 
+    onUnmounted(close)
+    return routines
 }

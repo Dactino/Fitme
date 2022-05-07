@@ -7,7 +7,7 @@
       @continueOperation="addRoutine"
     />
     <div class="shadow sm:rounded-md">
-      <div class="px-4 py-5 bg-white sm:p-6">
+      <div v-if="routine === null" class="px-4 py-5 bg-white sm:p-6">
         <div class="grid grid-cols-6 gap-6">
           <div class="col-span-6 sm:col-span-3">
             <label
@@ -42,8 +42,15 @@
             @addExercise="addExercise"
           />
           <div>
-            <div v-for="i in dayIds[index - 1].exercises.length" :key="i">
-              <AExercise :exercise="dayIds[index - 1].exercises[i - 1][0]" />
+            <div
+              v-for="i in newRoutine.days[index - 1].exercises.length"
+              :key="i"
+            >
+              <AExercise
+                :exercise="
+                  getExercise(newRoutine.days[index - 1].exercises[i - 1])[0]
+                "
+              />
               <VButton @click="delExercise(i - 1, index - 1)">
                 Eliminar Ejercicio
               </VButton>
@@ -66,6 +73,7 @@
 <script setup>
 import { defineProps, ref, defineEmits } from "vue";
 import {
+  getRoutine,
   deleteRoutine,
   createRoutine,
   getExercise,
@@ -88,17 +96,25 @@ const props = defineProps({
     type: Object,
     required: true,
   },
-  exercises: {
+  routine: {
     type: Object,
-    required: true,
+    default: null,
   },
 });
 
 const emit = defineEmits(["addRoutine"]);
 
-const newRoutine = {
+const newRoutine = ref({
   category: "",
-  days: [
+  days: [],
+});
+
+if (props.routine !== null) {
+  props.routine.days.forEach((day) => {
+    newRoutine.value.days.push(day);
+  });
+} else {
+  newRoutine.value.days = [
     { exercises: ["Descanso"] },
     { exercises: ["Descanso"] },
     { exercises: ["Descanso"] },
@@ -106,13 +122,12 @@ const newRoutine = {
     { exercises: ["Descanso"] },
     { exercises: ["Descanso"] },
     { exercises: ["Descanso"] },
-  ],
-};
+  ];
+}
 
 function deleteDays() {
   days.forEach((day, index) => {
-    newRoutine.days[index].exercises = ["Descanso"];
-    dayIds.value[index].exercises = ["Descanso"];
+    newRoutine.value.days[index].exercises = ["Descanso"];
   });
 }
 const checkOperation = ref(false);
@@ -126,7 +141,7 @@ function cancelOp() {
 }
 
 function addRoutine() {
-  emit("addRoutine", newRoutine);
+  emit("addRoutine", newRoutine.value);
   checkOperation.value = false;
   deleteDays();
 }
@@ -134,34 +149,17 @@ function addRoutine() {
 //Operations with the exercises and the new Routine
 
 function addExercise(exerciseId, index) {
-  if (newRoutine.days[index].exercises[0] == "Descanso") {
-    newRoutine.days[index].exercises.splice(0, 1);
+  if (newRoutine.value.days[index].exercises[0] == "Descanso") {
+    newRoutine.value.days[index].exercises.splice(0, 1);
   }
-  newRoutine.days[index].exercises.push(exerciseId);
-  dayIds.value[index].exercises = getDayExercises(
-    newRoutine.days[index].exercises
-  );
-  console.log(newRoutine);
+  newRoutine.value.days[index].exercises.push(exerciseId);
 }
 
 function delExercise(position, index) {
-  if (newRoutine.days[index].exercises.length == 1) {
-    newRoutine.days[index].exercises = ["Descanso"];
-    dayIds.value[index].exercises = ["Descanso"];
+  if (newRoutine.value.days[index].exercises.length == 1) {
+    newRoutine.value.days[index].exercises = ["Descanso"];
   } else {
-    newRoutine.days[index].exercises.splice(position, 1);
-    dayIds.value[index].exercises.splice(position, 1);
+    newRoutine.value.days[index].exercises.splice(position, 1);
   }
-  console.log(dayIds);
 }
-
-const dayIds = ref([
-  { exercises: ["Descanso"] },
-  { exercises: ["Descanso"] },
-  { exercises: ["Descanso"] },
-  { exercises: ["Descanso"] },
-  { exercises: ["Descanso"] },
-  { exercises: ["Descanso"] },
-  { exercises: ["Descanso"] },
-]);
 </script>

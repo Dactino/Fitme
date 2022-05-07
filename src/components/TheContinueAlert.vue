@@ -87,7 +87,7 @@
   </TransitionRoot>
 </template>
 <script setup>
-import { defineProps } from "vue";
+import { defineProps, defineEmits } from "vue";
 import {
   Dialog,
   DialogOverlay,
@@ -107,4 +107,6 @@ defineProps({
     default: null,
   },
 });
+
+defineEmits(["cancelOperation", "continueOperation"]);
 </script>

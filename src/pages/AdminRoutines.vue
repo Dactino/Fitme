@@ -19,7 +19,6 @@
       <VButton @click="checkOp(routine.id)">Eliminar</VButton>
     </div>
     <AdminRoutineForm
-      :exercises="exercises"
       :routineCategories="routineCategories"
       :exerciseCategories="exerciseCategories"
       @addRoutine="addRoutine"
@@ -46,6 +45,7 @@ import ExercisesPerCategory from "@/components/ExercisesPerCategory.vue";
 import AdminRoutineForm from "@/components/AdminRoutineForm.vue";
 import TheContinueAlert from "@/components/TheContinueAlert.vue";
 import VButton from "@/components/VButton.vue";
+
 auth.onAuthStateChanged(function (us) {
   if (us.uid != adminId) {
     useRouter().push("/404");
@@ -57,8 +57,6 @@ const routineCategories = getRoutineCategories();
 const routines = getRoutines();
 
 const exerciseCategories = getExerciseCategories();
-
-const exercises = getExercises();
 
 const checkOperation = ref([false]);
 
