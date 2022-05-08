@@ -1,18 +1,16 @@
 <template>
-  <div>
+  <div class="space-y-4">
     <TheContinueAlert
       v-if="checkOperation"
       messageTitle="Add routine"
       @cancelOperation="cancelOp"
       @continueOperation="addRoutine"
     />
-    <div class="shadow sm:rounded-md">
-      <div v-if="routine === null" class="px-4 py-5 bg-white sm:p-6">
+    <div>
+      <div v-if="addCaterory" class="px-4 py-5 bg-white sm:p-6">
         <div class="grid grid-cols-6 gap-6">
           <div class="col-span-6 sm:col-span-3">
-            <label
-              for="category"
-              class="block text-sm font-medium text-gray-700"
+            <label for="category" class="block text-xl font-medium text-fpurple"
               >Categoria de la rutina</label
             >
             <select
@@ -20,7 +18,7 @@
               name="category"
               v-model="newRoutine.category"
               autocomplete="category-name"
-              class="block w-full px-3 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+              class="block w-full px-3 py-2 mt-1 bg-fgreen sm:text-sm text-fpurple focus:border-fpurple"
             >
               <option
                 :value="category.id"
@@ -33,39 +31,44 @@
           </div>
         </div>
       </div>
-      <div class="flex gap-8 flex-inline">
-        <div v-for="index in 7" :key="index">
-          {{ days[index - 1] }}
+      <div class="flex flex-wrap justify-center gap-8 lg:grid lg:grid-cols-7">
+        <div v-for="index in 7" :key="index" class="space-y-2">
+          <p class="text-lg font-medium text-fpurple">
+            {{ days[index - 1] }}
+          </p>
           <AdminRoutineFormDay
             :exerciseCategories="props.exerciseCategories"
             :index="index - 1"
             @addExercise="addExercise"
           />
-          <div>
+          <div class="space-y-2">
             <div
               v-for="i in newRoutine.days[index - 1].exercises.length"
               :key="i"
+              class="space-y-2"
             >
               <AExercise
                 :exercise="
                   getExercise(newRoutine.days[index - 1].exercises[i - 1])[0]
                 "
               />
-              <VButton @click="delExercise(i - 1, index - 1)">
+              <VButton
+                v-if="newRoutine.days[index - 1].exercises[i - 1] != 'Descanso'"
+                @click="delExercise(i - 1, index - 1)"
+              >
                 Eliminar Ejercicio
               </VButton>
             </div>
           </div>
         </div>
       </div>
-      <div class="px-4 py-3 text-right bg-gray-50 sm:px-6">
-        <button
-          @click="checkOp"
-          class="inline-flex justify-center px-4 py-2 text-sm font-medium text-white bg-indigo-600 border border-transparent rounded-md shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-        >
-          Save
-        </button>
-      </div>
+      <VButton
+        @click="checkOp"
+        class="w-full m-auto my-4 sm:w-1/6 lg:w-1/12"
+        variant="secondary"
+      >
+        Guardar
+      </VButton>
     </div>
   </div>
 </template>
@@ -99,6 +102,10 @@ const props = defineProps({
   routine: {
     type: Object,
     default: null,
+  },
+  addCaterory: {
+    type: Boolean,
+    default: true,
   },
 });
 

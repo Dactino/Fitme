@@ -1,20 +1,16 @@
 <template>
   <TheLayout>
-    <h1 class="text-4xl text-fgreen">{{ category.name }}</h1>
-    <div
-      class="grid grid-cols-7 gap-8 text-xs font-semibold leading-6 text-center text-gray-700 bg-gray-200 border-b border-gray-300 lg:flex-none"
-    >
-      <div v-for="index in 7" :key="index" class="py-2 bg-white">
-        {{ days[index - 1] }}
-      </div>
-    </div>
+    <h1 class="text-4xl font-bold text-fgreen">{{ category.name }}</h1>
     <div v-if="modifyRoutine == false">
       <div v-for="routine in routines" :key="routine.id">
-        <div>
+        <div class="space-x-4">
           <ARoutine :routine="routine" />
-          <VButton v-if="isLogged" @click="modRou(routine)">Modify</VButton>
-          <VButton v-if="isLogged" @click="addUserRoutine(routine)"
-            >Save</VButton
+          <VButton v-if="isLogged" @click="modRou(routine)">Modificar</VButton>
+          <VButton
+            v-if="isLogged"
+            @click="addUserRoutine(routine)"
+            variant="secondary"
+            >Guardar</VButton
           >
         </div>
       </div>
@@ -26,7 +22,7 @@
         :exerciseCategories="exerciseCategories"
         @addRoutine="addUserRoutine"
       />
-      <VButton @click="modifyRoutine = false">Cancel</VButton>
+      <VButton @click="modifyRoutine = false">Cancelar</VButton>
     </div>
   </TheLayout>
 </template>

@@ -1,5 +1,8 @@
 <template>
-  <div class="text-white bg-fgreen">
+  <div
+    class="w-full text-lg text-center text-white truncate rounded-lg md:text-xl"
+    :class="exercise.id == 'Descanso' ? 'bg-fpurple' : 'bg-fgreen'"
+  >
     <!-- Imagen no definitiva -->
     <div class="hidden w-full overflow-hidden rounded-md aspect-w-1 aspect-h-1">
       <img
@@ -9,7 +12,12 @@
       />
     </div>
     <div class="mt-6">
-      <h3 class="mt-1 font-semibold text-fpurple">{{ exercise.name }}</h3>
+      <h3
+        class="mt-1 font-semibold text-fpurple"
+        :class="exercise.id != 'Descanso' ? 'text-fpurple' : 'text-fgreen'"
+      >
+        {{ exercise.name }}
+      </h3>
       <p class="mt-1">{{ exercise.repetitions }}</p>
     </div>
     <div v-if="addExercise">

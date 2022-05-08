@@ -27,32 +27,36 @@ import EffectiveIcon from "../icons/EffectiveIcon.vue";
 
 const features = [
   {
-    name: "Easy",
+    name: "Fácil",
     icon: EasyIcon,
+    img: "easy.png",
     right: false,
     description:
-      "Semper curabitur ullamcorper posuere nunc sed. Ornare iaculis bibendum malesuada faucibus lacinia porttitor. Pulvinar laoreet sagittis viverra duis. In venenatis sem arcu pretium pharetra at. Lectus viverra dui tellus ornare pharetra.",
+      "¡Visualiza todas las rutinas y guárdate las que más te gusten con un solo click! Así de fácil es empezar tu nuevo entrenamiento",
   },
   {
-    name: "Quick",
+    name: "Gratis",
     icon: QuickIcon,
+    img: "free.jpeg",
     right: true,
     description:
-      "Semper curabitur ullamcorper posuere nunc sed. Ornare iaculis bibendum malesuada faucibus lacinia porttitor. Pulvinar laoreet sagittis viverra duis. In venenatis sem arcu pretium pharetra at. Lectus viverra dui tellus ornare pharetra.",
+      "Rutinas de expertos totalmete gratis al alcance de tu mano. ¡Ya no tienes excusas para no empezar a entrenar!",
   },
   {
-    name: "Reliable",
+    name: "Confiable",
     icon: ShieldIcon,
+    img: "reliable.jpeg",
     right: false,
     description:
-      "Semper curabitur ullamcorper posuere nunc sed. Ornare iaculis bibendum malesuada faucibus lacinia porttitor. Pulvinar laoreet sagittis viverra duis. In venenatis sem arcu pretium pharetra at. Lectus viverra dui tellus ornare pharetra.",
+      "Cuando guardes o modifiques una rutina, estará a tu única disposición desde la página de tu perfil",
   },
   {
-    name: "Effective",
+    name: "Efectivo",
     icon: EffectiveIcon,
+    img: "home_hero_3.jpeg",
     right: true,
     description:
-      "Semper curabitur ullamcorper posuere nunc sed. Ornare iaculis bibendum malesuada faucibus lacinia porttitor. Pulvinar laoreet sagittis viverra duis. In venenatis sem arcu pretium pharetra at. Lectus viverra dui tellus ornare pharetra.",
+      "Con un poco de esfuerzo y dedicación, ¡gracias a nuestra ayuda notarás los efectos del ejercicio!",
   },
 ];
 </script>

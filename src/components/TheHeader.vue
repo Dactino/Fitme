@@ -23,15 +23,14 @@
             </span>
           </PopoverButton>
         </div>
-        <div
-          class="items-center justify-end hidden md:flex md:flex-1 lg:w-0"
-          v-else
-        >
+        <div class="flex items-center justify-end flex-1 lg:w-0" v-else>
           <div class="space-x-2">
-            <a href="/login"> <VButton variant="primary"> Sign in </VButton></a>
+            <a href="/login">
+              <VButton variant="primary"> Iniciar sesión </VButton></a
+            >
 
             <a href="/register">
-              <VButton variant="terciary"> Sign up </VButton>
+              <VButton variant="terciary"> Registrarse </VButton>
             </a>
           </div>
         </div>
@@ -96,32 +95,34 @@
               <router-link
                 to="/trainer"
                 v-if="isAdmin"
-                class="text-base font-medium text-gray-900 hover:text-gray-700"
+                class="text-xl font-medium text-fgreen hover:text-fgreen-dark1"
               >
-                Administrate site
+                Administración
               </router-link>
               <router-link
                 to="/profile"
                 v-if="isLogged"
-                class="text-base font-medium text-gray-900 hover:text-gray-700"
+                class="text-xl font-medium text-fgreen hover:text-fgreen-dark1"
               >
-                Profile
+                Perfil
               </router-link>
             </div>
             <div v-if="!isLogged">
               <a href="/register" class="flex items-center justify-center">
-                <VButton variant="secondary" class="w-full"> Sign up </VButton>
+                <VButton variant="secondary" class="w-full">
+                  Registrarse
+                </VButton>
               </a>
               <p class="mt-6 text-base font-medium text-center text-gray-500">
-                Existing customer?
+                ¿Ya tienes cuenta?
                 {{ " " }}
                 <a href="/login" class="text-fpurple hover:text-fpurple-dark1">
-                  Sign in
+                  Inicia sesión
                 </a>
               </p>
             </div>
             <VButton v-else variant="secondary" @click="logOut">
-              Log out
+              Cerrar sesión
             </VButton>
           </div>
         </div>
@@ -138,30 +139,4 @@ import AvatarIcon from "../icons/AvatarIcon.vue";
 import { ref } from "vue";
 //import { useRouter } from "vue-router";
 import VButton from "@/components/VButton.vue";
-
-const resources = [
-  {
-    name: "Help Center",
-    description:
-      "Get all of your questions answered in our forums or contact support.",
-    href: "#",
-  },
-  {
-    name: "Guides",
-    description:
-      "Learn how to maximize our platform to get the most out of it.",
-    href: "#",
-  },
-  {
-    name: "Events",
-    description:
-      "See what meet-ups and other events we might be planning near you.",
-    href: "#",
-  },
-  {
-    name: "Security",
-    description: "Understand how we take your privacy seriously.",
-    href: "#",
-  },
-];
 </script>

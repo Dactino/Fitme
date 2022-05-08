@@ -1,4 +1,5 @@
 <template>
+  <TheHeader />
   <TheContinueAlert
     v-if="checkOperation[0]"
     messageTitle="Delete routine"
@@ -7,13 +8,6 @@
     :id="checkOperation[1]"
   />
   <div>
-    <div
-      class="grid grid-cols-7 gap-8 text-xs font-semibold leading-6 text-center text-gray-700 bg-gray-200 border-b border-gray-300 lg:flex-none"
-    >
-      <div v-for="index in 7" :key="index" class="py-2 bg-white">
-        {{ days[index - 1] }}
-      </div>
-    </div>
     <div v-for="routine in routines" :key="routine.id">
       <ARoutine :routine="routine" :days="routine.days.lenght" />
       <VButton @click="checkOp(routine.id)">Eliminar</VButton>
@@ -41,6 +35,7 @@ import {
 } from "@/bd/bd.js";
 import { days } from "@/assets/variables.js";
 import ARoutine from "@/components/ARoutine.vue";
+import TheHeader from "@/components/TheHeader.vue";
 import ExercisesPerCategory from "@/components/ExercisesPerCategory.vue";
 import AdminRoutineForm from "@/components/AdminRoutineForm.vue";
 import TheContinueAlert from "@/components/TheContinueAlert.vue";

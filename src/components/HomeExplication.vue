@@ -1,5 +1,5 @@
 <template>
-  <div class="relative pt-16 pb-32 overflow-hidden">
+  <div class="relative py-8 overflow-hidden">
     <div aria-hidden="true" class="absolute inset-x-0 top-0 h-48" />
     <div class="relative">
       <div
@@ -18,30 +18,34 @@
                 Hay que poner imagenes del resultado final de las rutinas
             -->
             <div class="mt-6">
-              <h2 class="text-3xl font-extrabold tracking-tight text-gray-900">
+              <h2 class="text-3xl font-extrabold tracking-tight text-fgreen">
                 {{ props.feature.name }}
               </h2>
-              <p class="mt-4 text-lg text-gray-500">
+              <p class="mt-4 text-lg text-fpurple">
                 {{ props.feature.description }}
               </p>
               <div class="mt-6">
                 <a href="/categories">
-                  <VButton variant="primary">Get started</VButton>
+                  <VButton variant="primary">Empezar</VButton>
                 </a>
               </div>
             </div>
           </div>
         </div>
-        <div class="mt-12 sm:mt-16 lg:mt-0">
+        <div class="mt-6 sm:mt-8 lg:mt-0">
           <div
             class="-mr-48 sm:pl-6 md:-mr-16 lg:px-0 lg:m-0 lg:relative lg:h-full"
-            :class="props.feature.right ? 'pl-4' : 'pr-4'"
+            :class="props.feature.right ? 'pl-4' : 'lg:pr-4'"
           >
             <img
-              class="shadow-xl rounded-xl ring-1 ring-black ring-opacity-5 lg:absolute lg:h-full lg:max-w-none"
-              src="../../public/home_hero_3.jpeg"
+              class="shadow-xl rounded-xl ring-1 ring-black ring-opacity-5 lg:absolute lg:w-full lg:h-full lg:max-w-none"
+              :src="feature.img"
               alt="Inbox user interface"
-              :class="props.feature.right ? 'lg:right-0' : 'lg:left-0'"
+              :class="
+                props.feature.right
+                  ? 'lg:right-0'
+                  : 'lg:left-0 sm:rounded-xl rounded-none'
+              "
             />
           </div>
         </div>

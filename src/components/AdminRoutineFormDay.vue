@@ -6,14 +6,12 @@
     @close="displayExercises = false"
     @addExercise="addExercise"
   />
-  <div class="flex flex-col">
-    <button
-      @click="displayExercises = true"
-      class="relative block p-8 text-center border-2 border-gray-300 border-dashed rounded-lg"
-    >
-      <PlusIcon class="w-auto h-5" />
-    </button>
-  </div>
+  <button
+    @click="displayExercises = true"
+    class="relative flex justify-center w-full p-8 text-center border-2 border-dashed rounded-lg border-fgreen text-fpurple flex-inline"
+  >
+    <PlusIcon class="w-auto h-5" />
+  </button>
 </template>
 
 <script setup>

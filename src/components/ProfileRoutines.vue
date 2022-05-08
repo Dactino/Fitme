@@ -6,13 +6,6 @@
     @continueOperation="delRoutine"
     :id="checkOperation[1]"
   />
-  <div
-    class="grid grid-cols-7 gap-8 text-xs font-semibold leading-6 text-center text-gray-700 bg-gray-200 border-b border-gray-300 lg:flex-none"
-  >
-    <div v-for="index in 7" :key="index" class="py-2 bg-white">
-      {{ days[index - 1] }}
-    </div>
-  </div>
   <div v-if="modifyRoutine == false">
     <div v-for="routine in routines" :key="routine.id">
       <div>
@@ -27,6 +20,7 @@
       :routine="modifyRoutine"
       :routineCategories="routineCategories"
       :exerciseCategories="exerciseCategories"
+      :addCaterory="false"
       @addRoutine="changeUserRoutine"
     />
     <VButton @click="modifyRoutine = false">Cancel</VButton>
@@ -66,7 +60,6 @@ const modifyRoutine = ref(false);
 const router = useRouter();
 
 function changeUserRoutine(newRoutine) {
-  console.log(newRoutine, "modificando la rutina");
   modifyUserRoutine(newRoutine, modifyRoutine.value.id);
   modifyRoutine.value = false;
   router.push("/profile");
