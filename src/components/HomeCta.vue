@@ -6,18 +6,21 @@
       <h2
         class="text-4xl font-extrabold tracking-tight text-fgreen sm:text-4xl"
       >
-        <span class="block">Ready to get started?</span>
+        <span class="block">¿Listo para empezar?</span>
         <span class="block pb-1 -mb-1 text-transparent bg-white bg-clip-text"
-          >Get in touch or create an account.</span
+          >Inicia sesión o regístrate</span
         >
       </h2>
       <div class="mt-6 space-y-4 sm:space-y-0 sm:flex sm:space-x-5">
-        <a href="#" class="flex items-center justify-center">
-          <VButton variant="primary"> Contact us </VButton>
-        </a>
-        <a href="/categories" class="flex items-center justify-center">
-          <VButton variant="secondary"> Get started </VButton>
-        </a>
+        <div class="space-x-2">
+          <a href="/login">
+            <VButton variant="primary"> Iniciar sesión </VButton></a
+          >
+
+          <a href="/register">
+            <VButton variant="secondary"> Registrarse </VButton>
+          </a>
+        </div>
       </div>
     </div>
     <hr class="w-4/5 max-w-3xl m-auto" />

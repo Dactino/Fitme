@@ -3,7 +3,7 @@
     <!-- Decorative image and overlay -->
     <div aria-hidden="true" class="absolute inset-0 overflow-hidden">
       <img
-        src="../../public/home_hero_2.jpeg"
+        src="https://firebasestorage.googleapis.com/v0/b/fitme-750c0.appspot.com/o/home_hero_2.jpeg?alt=media&token=628aaa6d-a72c-47fc-a774-649cb35c118c"
         alt=""
         class="object-cover object-top w-full h-full"
       />
@@ -16,19 +16,17 @@
       <h1
         class="text-4xl font-extrabold tracking-tight text-fgreen lg:text-6xl"
       >
-        New arrivals are here
+        No más excusas
       </h1>
       <p class="text-xl text-white">
-        The new arrivals have, well, newly arrived. Check out the latest options
-        from our summer small-batch release while they're still in stock.
+        Ponte en forma gracias a las rutinas creadas por nuestros expertos de
+        forma gratuita o crea tus propias rutinas
       </p>
       <div class="flex-col space-x-0 space-y-2 lg:space-x-32 md:space-x-6">
         <a href="/categories" class="inline-block text-base font-medium"
-          ><VButton variant="primary"> Get Started </VButton></a
+          ><VButton variant="secondary"> Empezar </VButton></a
         >
-        <a href="#" class="inline-block text-base font-medium"
-          ><VButton variant="secondary"> Read more </VButton></a
-        >
+        <VButton @click="more.readMore" variant="primary"> Leer más </VButton>
       </div>
     </div>
   </div>
@@ -36,4 +34,11 @@
 
 <script setup>
 import VButton from "../components/VButton.vue";
+
+const more = {
+  readMore() {
+    document.body.scrollTop = 700;
+    document.documentElement.scrollTop = 700;
+  },
+};
 </script>

@@ -14,8 +14,8 @@
             alt="Company name"
           />
           <p class="text-base text-white">
-            Making the world a better place through changing people's lifestyle
-            a bit
+            Haciendo del mundo un lugar mejor a traves de cambiar un poco el
+            estilo de vida de las personas
           </p>
           <div class="flex pl-5 space-x-6 md:pl-0">
             <a
