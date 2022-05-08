@@ -32,12 +32,13 @@
                         return ex.category == category.id;
                       })"
                       :key="exercise.id"
-                      class="bg-white"
+                      @click="$emit('addExercise', exercise.id)"
+                      class="bg-white hover:cursor-pointer"
                     >
                       <div
                         class="relative flex items-center px-6 py-5 space-x-3 hover:bg-gray-50 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-500"
                       >
-                        <button @click="$emit('addExercise', exercise.id)">
+                        <button>
                           {{ exercise.name }}
                         </button>
                       </div>

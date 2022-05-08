@@ -13,7 +13,9 @@
         <div>
           <ARoutine :routine="routine" />
           <VButton v-if="isLogged" @click="modRou(routine)">Modify</VButton>
-          <VButton @click="addUserRoutine(routine)">Save</VButton>
+          <VButton v-if="isLogged" @click="addUserRoutine(routine)"
+            >Save</VButton
+          >
         </div>
       </div>
     </div>
