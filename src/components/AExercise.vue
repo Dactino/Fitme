@@ -1,6 +1,6 @@
 <template>
   <div
-    class="w-full text-lg text-center text-white truncate rounded-lg md:text-xl"
+    class="w-full h-full text-lg text-center text-white truncate rounded-lg md:text-xl"
     :class="exercise.id == 'Descanso' ? 'bg-fpurple' : 'bg-fgreen'"
   >
     <!-- Imagen no definitiva -->
@@ -11,7 +11,7 @@
         class="object-cover object-center w-full h-full group-hover:opacity-75"
       />
     </div>
-    <div class="mt-6">
+    <div class="m-auto mt-6">
       <h3
         class="mt-1 font-semibold text-fpurple"
         :class="exercise.id != 'Descanso' ? 'text-fpurple' : 'text-fgreen'"

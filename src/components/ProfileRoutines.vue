@@ -10,8 +10,14 @@
     <div v-for="routine in routines" :key="routine.id">
       <div>
         <ARoutine :routine="routine" />
-        <VButton @click="modRou(routine)">Modify</VButton>
-        <VButton @click="checkOp(routine.id)">Delete</VButton>
+        <div
+          class="flex justify-between space-x-4 flex-inline sm:justify-center"
+        >
+          <VButton @click="modRou(routine)" variant="secondary"
+            >Modificar</VButton
+          >
+          <VButton @click="checkOp(routine.id)">Eliminar</VButton>
+        </div>
       </div>
     </div>
   </div>
