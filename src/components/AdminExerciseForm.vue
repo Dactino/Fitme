@@ -24,9 +24,7 @@
             />
           </div>
           <div class="col-span-6 sm:col-span-3">
-            <label
-              for="first-name"
-              class="block text-xl font-medium text-fpurple"
+            <label class="block text-xl font-medium text-fpurple"
               >Repeticiones del ejercicio</label
             >
             <input
@@ -84,4 +82,9 @@ const newExercise = {
   category: "",
   image: "",
 };
+
+function imgSelected(event) {
+  newExercise.image = event.target.files[0];
+  console.log(newExercise.image);
+}
 </script>

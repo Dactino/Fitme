@@ -1,13 +1,16 @@
 <template>
+  <TheHeader />
   <div class="space-y-8">
     <div class="flex flex-wrap gap-8 p-8">
-      <div v-for="exercise in exercises" :key="exercise.id" class="space-y-4">
-        <AExercise class="flex" :exercise="exercise" />
-        <VButton
-          v-if="exercise.id != 'Descanso'"
-          @click="deleteExercise(exercise.id)"
-          >Eliminar</VButton
-        >
+      <div
+        v-for="exercise in exercises"
+        :key="exercise.id"
+        class="py-8 space-y-4"
+      >
+        <div v-if="exercise.id != 'Descanso'">
+          <AExercise class="flex" :exercise="exercise" />
+          <VButton @click="deleteExercise(exercise.id)">Eliminar</VButton>
+        </div>
       </div>
     </div>
     <AdminExerciseForm @addExercise="addExercise" :categories="categories" />
@@ -25,6 +28,7 @@ import {
   deleteExercise,
 } from "@/bd/bd.js";
 import AExercise from "@/components/AExercise.vue";
+import TheHeader from "@/components/TheHeader.vue";
 import VButton from "@/components/VButton.vue";
 import AdminExerciseForm from "@/components/AdminExerciseForm.vue";
 
