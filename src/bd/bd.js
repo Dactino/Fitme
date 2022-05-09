@@ -53,6 +53,11 @@ export const deleteRoutine = id => {
     return routinesCollection.doc(id).delete()
 }
 
+export const modifyOurRoutine = (routine, id) => {
+    deleteRoutine(id)
+    return createRoutine(routine)
+}
+
 export const getRoutine = async id => {
     const routine = await routinesCollection.doc(id).get()
     return routine.exists ? routine.data() : null

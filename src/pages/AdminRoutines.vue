@@ -7,16 +7,31 @@
     @continueOperation="delRoutine"
     :id="checkOperation[1]"
   />
-  <div>
+  <div v-if="modifyRoutine == false">
     <div v-for="routine in routines" :key="routine.id">
       <ARoutine :routine="routine" :days="routine.days.lenght" />
-      <VButton @click="checkOp(routine.id)">Eliminar</VButton>
+      <div class="flex justify-between space-x-4 flex-inline sm:justify-center">
+        <VButton @click="modRou(routine)" variant="secondary"
+          >Modificar</VButton
+        >
+        <VButton @click="checkOp(routine.id)">Eliminar</VButton>
+      </div>
     </div>
     <AdminRoutineForm
       :routineCategories="routineCategories"
       :exerciseCategories="exerciseCategories"
       @addRoutine="addRoutine"
     />
+  </div>
+  <div v-else>
+    <AdminRoutineForm
+      :routine="modifyRoutine"
+      :routineCategories="routineCategories"
+      :exerciseCategories="exerciseCategories"
+      :addCaterory="false"
+      @addRoutine="changeRoutine"
+    />
+    <VButton @click="modifyRoutine = false">Cancel</VButton>
   </div>
 </template>
 
@@ -31,6 +46,7 @@ import {
   getRoutineCategories,
   getRoutines,
   getExercises,
+  modifyOurRoutine,
   getExerciseCategories,
 } from "@/bd/bd.js";
 import { days } from "@/assets/variables.js";
@@ -53,6 +69,8 @@ const routines = getRoutines();
 
 const exerciseCategories = getExerciseCategories();
 
+const modifyRoutine = ref(false);
+
 const checkOperation = ref([false]);
 
 function checkOp(idRoutine) {
@@ -69,5 +87,14 @@ function delRoutine(id) {
 function addRoutine(newRoutine) {
   createRoutine(newRoutine);
   console.log("Success");
+}
+
+function changeRoutine(newRoutine) {
+  modifyOurRoutine(newRoutine, modifyRoutine.value.id);
+  modifyRoutine.value = false;
+}
+
+function modRou(routine) {
+  modifyRoutine.value = routine;
 }
 </script>
