@@ -9,6 +9,9 @@ import Categories from '../pages/PCategories'
 import Trainer from '../pages/PAdmin.vue'
 import AdminExercises from '../pages/AdminExercises.vue'
 import AdminRoutines from '../pages/AdminRoutines.vue'
+import PrivacyPolitics from '../pages/PPrivacy.vue'
+import AboutUs from '../pages/PAbout.vue'
+import Terms from '../pages/PConditions.vue'
 import PageNotFound from '../pages/PageNotFound'
 
 const routes = [
@@ -56,6 +59,21 @@ const routes = [
         path: '/trainer/routines',
         name: 'AdminRoutines',
         component: AdminRoutines
+    },
+    {
+        path: '/privacy',
+        name: 'PrivacyPolitics',
+        component: PrivacyPolitics
+    },
+    {
+        path: '/about',
+        name: 'AboutUs',
+        component: AboutUs
+    },
+    {
+        path: '/terms',
+        name: 'Terms',
+        component: Terms
     },
     {
         path: "/:catchAll(.*)",

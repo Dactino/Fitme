@@ -2,9 +2,14 @@
 
 import { auth } from "../bd/bd";
 import {ref} from 'vue'
+import { signInWithPopup, GoogleAuthProvider } from "@firebase/auth";
+import { useRouter } from "vue-router";
+
+const router = useRouter();
 
 export const isLogged = ref(false)
 export const isAdmin = ref(false)
+const provider = new GoogleAuthProvider();
 
 auth.onAuthStateChanged(function (us) {
     if (us) {
@@ -18,6 +23,22 @@ auth.onAuthStateChanged(function (us) {
       isLogged.value = false
     }  
 });
+
+export const signWithGoogle = () => {
+  signInWithPopup(auth, provider)
+  .then((result) => {
+    // This gives you a Google Access Token. You can use it to access the Google API.
+    const credential = provider.credentialFromResult(result);
+    const token = credential.accessToken;
+    // The signed-in user info.
+    const user = result.user;
+    console.log('Logued succesfully');
+    location.href = "/"
+  }).catch(error => {
+    return console.error(error);
+  })
+  return true
+}
 
 export const logOut = () => {
     auth.signOut();
