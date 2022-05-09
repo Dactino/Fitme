@@ -56,6 +56,8 @@ if (!isLogged) {
 auth.onAuthStateChanged(function (us) {
   if (us) {
     userId.value = us.uid;
+  } else {
+    router.push("/");
   }
 });
 

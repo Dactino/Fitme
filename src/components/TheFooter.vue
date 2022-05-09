@@ -29,45 +29,13 @@
             </a>
           </div>
         </div>
-        <div
-          class="grid grid-cols-2 gap-8 mt-12 text-white xl:mt-0 xl:col-span-2"
-        >
+        <div class="grid gap-8 mt-12 text-white xl:mt-0 xl:col-span-2">
           <div class="md:grid md:grid-cols-2 md:gap-8">
             <div>
               <h3
                 class="text-sm font-semibold tracking-wider uppercase text-fgreen"
               >
-                Solutions
-              </h3>
-              <ul role="list" class="mt-4 space-y-4">
-                <li v-for="item in navigation.solutions" :key="item.name">
-                  <a :href="item.href" class="text-base hover:text-gray-200">
-                    {{ item.name }}
-                  </a>
-                </li>
-              </ul>
-            </div>
-            <div class="mt-12 md:mt-0">
-              <h3
-                class="text-sm font-semibold tracking-wider uppercase text-fgreen"
-              >
-                Support
-              </h3>
-              <ul role="list" class="mt-4 space-y-4">
-                <li v-for="item in navigation.support" :key="item.name">
-                  <a :href="item.href" class="text-base hover:text-gray-200">
-                    {{ item.name }}
-                  </a>
-                </li>
-              </ul>
-            </div>
-          </div>
-          <div class="md:grid md:grid-cols-2 md:gap-8">
-            <div>
-              <h3
-                class="text-sm font-semibold tracking-wider uppercase text-fgreen"
-              >
-                Company
+                Compañía
               </h3>
               <ul role="list" class="mt-4 space-y-4">
                 <li v-for="item in navigation.company" :key="item.name">
@@ -92,6 +60,21 @@
               </ul>
             </div>
           </div>
+          <hr class="sm:text-white" />
+          <div class="md:grid md:gap-8">
+            <div class="mt-12 space-y-4 md:mt-0">
+              <h3
+                class="text-sm font-semibold tracking-wider uppercase text-fgreen"
+              >
+                Contáctenos
+              </h3>
+              <p class="text-base">
+                Para contactarnos, puede enviarnos un correo electrónico a la
+                siguiente dirección:
+              </p>
+              <p class="text-base text-fgreen">trainer.fitme@hotmail.com</p>
+            </div>
+          </div>
         </div>
       </div>
       <div class="pt-8 mt-12 border-t border-white">
@@ -107,29 +90,10 @@
 import { defineComponent, h } from "vue";
 
 const navigation = {
-  solutions: [
-    { name: "Marketing", href: "#" },
-    { name: "Analytics", href: "#" },
-    { name: "Commerce", href: "#" },
-    { name: "Insights", href: "#" },
-  ],
-  support: [
-    { name: "Pricing", href: "#" },
-    { name: "Documentation", href: "#" },
-    { name: "Guides", href: "#" },
-    { name: "API Status", href: "#" },
-  ],
-  company: [
-    { name: "About", href: "#" },
-    { name: "Blog", href: "#" },
-    { name: "Jobs", href: "#" },
-    { name: "Press", href: "#" },
-    { name: "Partners", href: "#" },
-  ],
+  company: [{ name: "Sobre nosotros", href: "/about" }],
   legal: [
-    { name: "Claim", href: "#" },
-    { name: "Privacy", href: "#" },
-    { name: "Terms", href: "#" },
+    { name: "Política de privacidad", href: "/privacy" },
+    { name: "Términos y condiciones", href: "/terms" },
   ],
   social: [
     {

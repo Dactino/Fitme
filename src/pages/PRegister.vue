@@ -17,6 +17,16 @@
 </template>
 
 <script setup>
+import { useRouter } from "vue-router";
+import { auth } from "@/bd/bd";
 import RegisterForm from "@/components/RegisterForm.vue";
 import TheFooter from "@/components/TheFooter.vue";
+
+const router = useRouter();
+
+auth.onAuthStateChanged((us) => {
+  if (us) {
+    router.push("/");
+  }
+});
 </script>

@@ -2,7 +2,7 @@
   <div class="space-y-4">
     <TheContinueAlert
       v-if="checkOperation"
-      messageTitle="Add routine"
+      messageTitle="Añadir rutina"
       @cancelOperation="cancelOp"
       @continueOperation="addRoutine"
     />

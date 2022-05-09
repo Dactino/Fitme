@@ -5,7 +5,7 @@
       <h2
         class="text-3xl font-extrabold text-fgreen sm:text-5xl sm:leading-none sm:tracking-tight lg:text-6xl"
       >
-        Rutinas para todo tipo de cuerpos
+        Rutinas para todo tipo de objetivos
       </h2>
       <p class="max-w-2xl mt-6 text-xl text-fpurple">
         ¡Escoge la categoría que más se aproxime a lo que estás buscando y
