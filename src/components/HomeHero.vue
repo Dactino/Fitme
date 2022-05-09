@@ -3,7 +3,7 @@
     <!-- Decorative image and overlay -->
     <div aria-hidden="true" class="absolute inset-0 overflow-hidden">
       <img
-        src="https://firebasestorage.googleapis.com/v0/b/fitme-750c0.appspot.com/o/home_hero_2.jpeg?alt=media&token=628aaa6d-a72c-47fc-a774-649cb35c118c"
+        src="../../public/home_hero_2.jpeg"
         alt=""
         class="object-cover object-top w-full h-full"
       />

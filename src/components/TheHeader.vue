@@ -24,7 +24,7 @@
           </PopoverButton>
         </div>
         <div class="flex items-center justify-end flex-1 lg:w-0" v-else>
-          <div class="space-x-2">
+          <div class="hidden space-x-2 md:block">
             <a href="/login">
               <VButton variant="primary"> Iniciar sesión </VButton></a
             >
@@ -32,6 +32,17 @@
             <a href="/register">
               <VButton variant="terciary"> Registrarse </VButton>
             </a>
+          </div>
+          <div class="space-x-2 md:hidden">
+            <PopoverButton
+              class="inline-flex items-center justify-center p-2 rounded-full text-fgreen hover:bg-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500"
+            >
+              <span
+                class="inline-block overflow-hidden bg-gray-100 rounded-full h-14 w-14"
+              >
+                <AvatarIcon class="w-full h-full" />
+              </span>
+            </PopoverButton>
           </div>
         </div>
       </div>

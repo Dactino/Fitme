@@ -1,8 +1,14 @@
 <template>
-  <div>
-    <div v-for="exercise in exercises" :key="exercise.id">
-      <AExercise class="flex" :exercise="exercise" />
-      <VButton @click="deleteExercise(exercise.id)">Eliminar</VButton>
+  <div class="space-y-8">
+    <div class="flex flex-wrap gap-8 p-8">
+      <div v-for="exercise in exercises" :key="exercise.id" class="space-y-4">
+        <AExercise class="flex" :exercise="exercise" />
+        <VButton
+          v-if="exercise.id != 'Descanso'"
+          @click="deleteExercise(exercise.id)"
+          >Eliminar</VButton
+        >
+      </div>
     </div>
     <AdminExerciseForm @addExercise="addExercise" :categories="categories" />
   </div>

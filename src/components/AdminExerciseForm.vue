@@ -11,7 +11,7 @@
           <div class="col-span-6 sm:col-span-3">
             <label
               for="first-name"
-              class="block text-sm font-medium text-gray-700"
+              class="block text-xl font-medium text-fpurple"
               >Nombre del ejercicio</label
             >
             <input
@@ -20,13 +20,13 @@
               v-model="newExercise.name"
               id="name"
               autocomplete="name"
-              class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+              class="block w-full mt-1 border-2 rounded-md shadow-sm text-fgreen border-fpurple focus:border-fpurple sm:text-sm"
             />
           </div>
           <div class="col-span-6 sm:col-span-3">
             <label
               for="first-name"
-              class="block text-sm font-medium text-gray-700"
+              class="block text-xl font-medium text-fpurple"
               >Repeticiones del ejercicio</label
             >
             <input
@@ -35,13 +35,11 @@
               v-model="newExercise.repetitions"
               id="repetitions"
               autocomplete="repetitions"
-              class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+              class="block w-full mt-1 border-2 rounded-md shadow-sm text-fgreen border-fpurple focus:border-fpurple sm:text-sm"
             />
           </div>
           <div class="col-span-6 sm:col-span-3">
-            <label
-              for="category"
-              class="block text-sm font-medium text-gray-700"
+            <label for="category" class="block text-xl font-medium text-fpurple"
               >Categoria del ejercicio</label
             >
             <select
@@ -49,7 +47,7 @@
               name="category"
               v-model="newExercise.category"
               autocomplete="category-name"
-              class="block w-full px-3 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+              class="block w-full px-3 py-2 mt-1 font-semibold text-white border-2 focus:border-fgreen bg-fpurple sm:text-sm border-fgreen"
             >
               <option
                 :value="category.id"
@@ -62,13 +60,8 @@
           </div>
         </div>
       </div>
-      <div class="px-4 py-3 text-right bg-gray-50 sm:px-6">
-        <button
-          type="submit"
-          class="inline-flex justify-center px-4 py-2 text-sm font-medium text-white bg-indigo-600 border border-transparent rounded-md shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-        >
-          Save
-        </button>
+      <div class="flex justify-center px-4 py-3 text-right bg-gray-50 sm:px-6">
+        <VButton @click="submit"> Guardar </VButton>
       </div>
     </div>
   </form>
@@ -76,6 +69,8 @@
 
 <script setup>
 import { defineProps } from "vue";
+import VButton from "@/components/VButton.vue";
+
 defineProps({
   categories: {
     type: Object,

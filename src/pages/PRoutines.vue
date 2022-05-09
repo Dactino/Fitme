@@ -3,15 +3,21 @@
     <h1 class="text-4xl font-bold text-fgreen">{{ category.name }}</h1>
     <div v-if="modifyRoutine == false">
       <div v-for="routine in routines" :key="routine.id">
-        <div class="space-x-4">
+        <div class="">
           <ARoutine :routine="routine" />
-          <VButton v-if="isLogged" @click="modRou(routine)">Modificar</VButton>
-          <VButton
-            v-if="isLogged"
-            @click="addUserRoutine(routine)"
-            variant="secondary"
-            >Guardar</VButton
+          <div
+            class="flex justify-between space-x-4 flex-inline sm:flex-none sm:justify-center"
           >
+            <VButton v-if="isLogged" @click="modRou(routine)"
+              >Modificar</VButton
+            >
+            <VButton
+              v-if="isLogged"
+              @click="addUserRoutine(routine)"
+              variant="secondary"
+              >Guardar</VButton
+            >
+          </div>
         </div>
       </div>
     </div>
@@ -20,6 +26,7 @@
         :routine="modifyRoutine"
         :routineCategories="routineCategories"
         :exerciseCategories="exerciseCategories"
+        :addCaterory="false"
         @addRoutine="addUserRoutine"
       />
       <VButton @click="modifyRoutine = false">Cancelar</VButton>

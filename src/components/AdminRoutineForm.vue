@@ -18,7 +18,7 @@
               name="category"
               v-model="newRoutine.category"
               autocomplete="category-name"
-              class="block w-full px-3 py-2 mt-1 bg-fgreen sm:text-sm text-fpurple focus:border-fpurple"
+              class="block w-full px-3 py-2 mt-1 font-semibold text-white border-2 focus:border-fgreen bg-fpurple sm:text-sm border-fgreen"
             >
               <option
                 :value="category.id"
