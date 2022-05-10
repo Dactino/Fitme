@@ -14,7 +14,7 @@ const provider = new GoogleAuthProvider();
 auth.onAuthStateChanged(function (us) {
     if (us) {
       isLogged.value = true
-      if (us.uid == "1Mr2czLc8Dhzz0t1GHqJO1zOJAz2") {
+      if (us.uid == "1Mr2czLc8Dhzz0t1GHqJO1zOJAz2" || us.uid == 'AK19FnvnYWPBiaQLwCw2jkwMrYf1') {
         isAdmin.value = true
       }
     }
