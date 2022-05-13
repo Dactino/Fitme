@@ -10,6 +10,7 @@
   "dependencies": {
     "@headlessui/vue": "^1.5.0",
     "@tailwindcss/forms": "^0.5.0",
+    "@tailwindcss/typography": "^0.5.2",
     "core-js": "^3.8.3",
     "firebase": "^9.6.10",
     "vue": "^3.2.13",
@@ -40,8 +41,8 @@
     "parserOptions": {
       "parser": "@babel/eslint-parser"
     },
-    "rules": { 
-        "no-unused-vars": "off" 
+    "rules": {
+      "no-unused-vars": "off"
     }
   },
   "browserslist": [

@@ -1,4 +1,8 @@
 <template>
+  <div class="sticky top-0 z-10">
+    <TheHeader class="absolute top-0 z-10 opacity-95" />
+  </div>
+
   <HomeHero />
 
   <HomeFeatures :features="features" />
@@ -15,6 +19,7 @@
 </template>
 
 <script setup>
+import TheHeader from "@/components/TheHeader.vue";
 import HomeHero from "@/components/HomeHero.vue";
 import HomeExplication from "@/components/HomeExplication.vue";
 import HomeFeatures from "@/components/HomeFeatures.vue";

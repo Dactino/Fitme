@@ -6,12 +6,7 @@
   </div>
   <div class="py-12 lg:grid lg:grid-cols-2">
     <LoginForm />
-    <div class="lg:border-l-2 lg:border-l-fpurple">
-      <div class="grid grid-cols-2 text-fgreen">
-        <p>Crea tus propias rutinas</p>
-        <p>Lista de rutinas personalizadas</p>
-      </div>
-    </div>
+    <SesionDetails />
   </div>
   <TheFooter />
 </template>
@@ -20,7 +15,10 @@
 import { useRouter } from "vue-router";
 import { auth } from "@/bd/bd";
 import LoginForm from "@/components/LoginForm.vue";
+import SesionDetails from "@/components/SesionDetails.vue";
 import TheFooter from "@/components/TheFooter.vue";
+import ListIcon from "@/icons/ListIcon.vue";
+import DocumentAddIcon from "@/icons/DocumentAddIcon.vue";
 
 const router = useRouter();
 

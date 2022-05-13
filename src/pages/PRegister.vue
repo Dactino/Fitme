@@ -5,10 +5,7 @@
     /></a>
   </div>
   <div class="py-12 lg:grid lg:grid-cols-2">
-    <div class="grid grid-cols-2 text-fgreen">
-      <p>Crea tus propias rutinas</p>
-      <p>Lista de rutinas personalizadas</p>
-    </div>
+    <SesionDetails />
     <div class="lg:border-l-2 lg:border-l-fpurple">
       <RegisterForm />
     </div>
@@ -20,6 +17,7 @@
 import { useRouter } from "vue-router";
 import { auth } from "@/bd/bd";
 import RegisterForm from "@/components/RegisterForm.vue";
+import SesionDetails from "@/components/SesionDetails.vue";
 import TheFooter from "@/components/TheFooter.vue";
 
 const router = useRouter();
