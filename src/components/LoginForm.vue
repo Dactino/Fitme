@@ -73,7 +73,9 @@
         </form>
         <p class="pt-6 text-fpurple">
           ¿No tienes cuenta?
-          <a href="/register" class="text-fgreen hover:underline">Regístrate</a>
+          <router-link to="/register" class="text-fgreen hover:underline"
+            >Regístrate</router-link
+          >
         </p>
         <div class="mt-6">
           <div class="relative">

@@ -15,7 +15,9 @@
             >Modificar</VButton
           >
           <VButton @click="checkOp(routine.id)">Eliminar</VButton>
-          <VButton @click="obtainPdf(routine.id)">Exportar PDF</VButton>
+          <VButton @click="obtainPdf(routine.id)" variant="terciary"
+            >Exportar PDF</VButton
+          >
         </div>
       </div>
     </div>

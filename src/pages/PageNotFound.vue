@@ -4,14 +4,14 @@
       class="flex flex-col justify-center flex-grow w-full px-4 mx-auto max-w-7xl sm:px-6 lg:px-8"
     >
       <div class="flex justify-center flex-shrink-0">
-        <a href="/" class="inline-flex">
+        <router-link to="/" class="inline-flex">
           <span class="sr-only">Workflow</span>
           <img
             class="w-auto h-50 hover:opacity-80"
             src="../../public/Logo.png"
             alt="Fitme Logo"
           />
-        </a>
+        </router-link>
       </div>
       <div class="py-16">
         <div class="text-center">

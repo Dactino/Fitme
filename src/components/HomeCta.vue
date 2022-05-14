@@ -13,13 +13,13 @@
       </h2>
       <div class="mt-6 space-y-4 sm:space-y-0 sm:flex sm:space-x-5">
         <div class="space-x-2">
-          <a href="/login">
-            <VButton variant="primary"> Iniciar sesión </VButton></a
+          <router-link to="/login">
+            <VButton variant="primary"> Iniciar sesión </VButton></router-link
           >
 
-          <a href="/register">
+          <router-link to="/register">
             <VButton variant="secondary"> Registrarse </VButton>
-          </a>
+          </router-link>
         </div>
       </div>
     </div>

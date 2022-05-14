@@ -25,9 +25,9 @@
                 {{ props.feature.description }}
               </p>
               <div class="mt-6">
-                <a href="/categories">
+                <router-link to="/categories">
                   <VButton variant="primary">Empezar</VButton>
-                </a>
+                </router-link>
               </div>
             </div>
           </div>

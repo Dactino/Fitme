@@ -1,4 +1,3 @@
-<!-- This example requires Tailwind CSS v2.0+ -->
 <template>
   <TheLayout>
     <div class="mx-auto bg-white max-w-7xl">

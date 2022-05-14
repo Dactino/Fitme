@@ -1,8 +1,8 @@
 <template>
   <div class="object-cover object-top w-1/2 h-auto px-8 m-auto mt-5 md:w-1/4">
-    <a href="/">
+    <router-link to="/">
       <img src="../../public/Logo.png" alt="" class="hover:opacity-80"
-    /></a>
+    /></router-link>
   </div>
   <div class="py-12 lg:grid lg:grid-cols-2">
     <SesionDetails />
