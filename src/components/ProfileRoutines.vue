@@ -10,13 +10,12 @@
     <div v-for="routine in routines" :key="routine.id">
       <div>
         <ARoutine :routine="routine" />
-        <div
-          class="flex justify-between space-x-4 flex-inline sm:justify-center"
-        >
+        <div class="flex flex-wrap justify-center gap-4 flex-inline">
           <VButton @click="modRou(routine)" variant="secondary"
             >Modificar</VButton
           >
           <VButton @click="checkOp(routine.id)">Eliminar</VButton>
+          <VButton @click="obtainPdf(routine.id)">Exportar PDF</VButton>
         </div>
       </div>
     </div>
@@ -46,6 +45,7 @@ import {
 } from "@/bd/bd.js";
 import { isLogged } from "@/bd/auth.js";
 import { days } from "@/assets/variables.js";
+import { getPdf } from "@/assets/htmlToPdf.js";
 import ARoutine from "@/components/ARoutine.vue";
 import AdminRoutineForm from "@/components/AdminRoutineForm.vue";
 import VButton from "@/components/VButton.vue";
@@ -92,4 +92,9 @@ function delRoutine(routineId) {
 const routineCategories = getRoutineCategories();
 
 const exerciseCategories = getExerciseCategories();
+
+//Get PDF
+function obtainPdf(routineId) {
+  getPdf(routineId);
+}
 </script>
