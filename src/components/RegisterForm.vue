@@ -73,7 +73,9 @@
         </form>
         <p class="pt-6 text-fpurple">
           ¿Ya tienes cuenta?
-          <a href="/login" class="text-fgreen hover:underline">Inicia sesión</a>
+          <router-link to="/login" class="text-fgreen hover:underline"
+            >Inicia sesión</router-link
+          >
         </p>
         <div class="mt-6">
           <div class="relative">

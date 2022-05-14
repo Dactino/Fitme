@@ -6,7 +6,7 @@
         <div class="">
           <ARoutine :routine="routine" />
           <div
-            class="flex justify-between space-x-4 flex-inline sm:flex-none sm:justify-center"
+            class="flex flex-wrap justify-center gap-4 flex-inline sm:flex-none"
           >
             <VButton v-if="isLogged" @click="modRou(routine)"
               >Modificar</VButton
@@ -16,6 +16,9 @@
               @click="addUserRoutine(routine)"
               variant="secondary"
               >Guardar</VButton
+            >
+            <VButton @click="obtainPdf(routine.id)" variant="terciary"
+              >Exportar PDF</VButton
             >
           </div>
         </div>
@@ -46,6 +49,7 @@ import {
 } from "@/bd/bd.js";
 import { isLogged } from "@/bd/auth.js";
 import { days } from "@/assets/variables.js";
+import { getPdf } from "@/assets/htmlToPdf.js";
 import TheLayout from "@/components/TheLayout.vue";
 import ARoutine from "@/components/ARoutine.vue";
 import AdminRoutineForm from "@/components/AdminRoutineForm.vue";
@@ -81,5 +85,10 @@ function addUserRoutine(newRoutine) {
 
 function modRou(routine) {
   modifyRoutine.value = routine;
+}
+
+//Get PDF
+function obtainPdf(routineId) {
+  getPdf(routineId);
 }
 </script>

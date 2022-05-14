@@ -4,11 +4,12 @@
       class="max-w-4xl px-4 py-8 mx-auto sm:px-6 sm:pt-20 sm:pb-24 lg:max-w-7xl lg:pt-24 lg:px-8"
     >
       <h1 class="text-4xl font-extrabold tracking-tight text-fgreen">
-        Inbox support built for efficiency
+        Lo que hacemos:
       </h1>
       <p class="max-w-3xl mx-auto mt-4 text-lg text-white">
-        Ac tincidunt sapien vehicula erat auctor pellentesque rhoncus. Et magna
-        sit morbi lobortis. Blandit aliquam sit nisl euismod mattis in.
+        Nos encragamos de ofrecer herramientas para que hacer ejercicio sea más
+        fácil que nunca. Con nuestra ayuda ya no podrás dejar para el día
+        siguiente el deporte
       </p>
       <div
         class="grid justify-center grid-cols-2 mt-12 gap-x-6 gap-y-12 sm:grid-cols-4 lg:mt-16 lg:grid-cols-4 lg:gap-x-8 lg:gap-y-16"

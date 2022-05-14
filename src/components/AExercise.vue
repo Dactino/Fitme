@@ -3,15 +3,7 @@
     class="w-full h-full text-lg text-center text-white truncate rounded-lg md:text-xl"
     :class="exercise.id == 'Descanso' ? 'bg-fpurple' : 'bg-fgreen'"
   >
-    <!-- Imagen no definitiva -->
-    <div class="hidden w-full overflow-hidden rounded-md aspect-w-1 aspect-h-1">
-      <img
-        :src="exercise.image"
-        :alt="exercise.name"
-        class="object-cover object-center w-full h-full group-hover:opacity-75"
-      />
-    </div>
-    <div class="m-auto mt-6">
+    <div class="py-2 m-auto">
       <h3
         class="mt-1 font-semibold text-fpurple"
         :class="exercise.id != 'Descanso' ? 'text-fpurple' : 'text-fgreen'"

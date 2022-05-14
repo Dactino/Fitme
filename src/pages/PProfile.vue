@@ -1,32 +1,34 @@
 <template>
-  <TheLayout>
-    <div class="py-8 space-y-8">
-      <div class="flex flex-col gap-8" v-if="!modify">
-        <ProfileInfo />
-        <VButton class="m-auto" @click="modify = true"> Modificar </VButton>
+  <div>
+    <TheLayout>
+      <div class="py-8 space-y-8">
+        <div class="flex flex-col gap-8" v-if="!modify">
+          <ProfileInfo />
+          <VButton class="m-auto" @click="modify = true"> Modificar </VButton>
+        </div>
+        <div class="flex flex-col gap-8" v-else>
+          <ProfileForm @finished="modify = false" />
+        </div>
+        <div>
+          <h3 class="text-xl font-medium leading-6 text-fgreen">
+            Rutinas personales
+          </h3>
+          <ProfileRoutines v-if="auth.currentUser" />
+        </div>
+        <div>
+          <h3 class="text-xl font-medium leading-6 text-fgreen">
+            Crear nueva rutina
+          </h3>
+          <AdminRoutineForm
+            :routineCategories="routineCategories"
+            :exerciseCategories="exerciseCategories"
+            :addCaterory="false"
+            @addRoutine="addUserRoutine"
+          />
+        </div>
       </div>
-      <div class="flex flex-col gap-8" v-else>
-        <ProfileForm @finished="modify = false" />
-      </div>
-      <div>
-        <h3 class="text-xl font-medium leading-6 text-fgreen">
-          Rutinas personales
-        </h3>
-        <ProfileRoutines v-if="auth.currentUser" />
-      </div>
-      <div>
-        <h3 class="text-xl font-medium leading-6 text-fgreen">
-          Crear nueva rutina
-        </h3>
-        <AdminRoutineForm
-          :routineCategories="routineCategories"
-          :exerciseCategories="exerciseCategories"
-          :addCaterory="false"
-          @addRoutine="addUserRoutine"
-        />
-      </div>
-    </div>
-  </TheLayout>
+    </TheLayout>
+  </div>
 </template>
 
 <script setup>

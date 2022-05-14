@@ -23,8 +23,8 @@
         forma gratuita o crea tus propias rutinas
       </p>
       <div class="flex-col space-x-0 space-y-2 lg:space-x-32 md:space-x-6">
-        <a href="/categories" class="inline-block text-base font-medium"
-          ><VButton variant="secondary"> Empezar </VButton></a
+        <router-link to="/categories" class="inline-block text-base font-medium"
+          ><VButton variant="secondary"> Empezar </VButton></router-link
         >
         <VButton @click="more.readMore" variant="primary"> Leer más </VButton>
       </div>

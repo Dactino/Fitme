@@ -2,7 +2,7 @@
   <div class="flex flex-col justify-center min-h-full py-12 text-center">
     <div class="sm:mx-auto sm:w-full sm:max-w-md">
       <h2 class="mt-6 text-3xl font-extrabold text-center text-fgreen">
-        iniciar sesión con correo electrónico y contraseña
+        Iniciar sesión con correo electrónico y contraseña
       </h2>
     </div>
     <div class="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
@@ -71,9 +71,11 @@
             </VButton>
           </div>
         </form>
-        <p class="pt-6 text-black">
+        <p class="pt-6 text-fpurple">
           ¿No tienes cuenta?
-          <a href="/register" class="text-fgreen hover:underline">Regístrate</a>
+          <router-link to="/register" class="text-fgreen hover:underline"
+            >Regístrate</router-link
+          >
         </p>
         <div class="mt-6">
           <div class="relative">

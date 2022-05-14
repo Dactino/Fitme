@@ -1,17 +1,22 @@
 <template>
   <Popover class="relative bg-fpurple">
     <div class="px-4 mx-auto max-w-7xl sm:px-6">
-      <div class="flex items-center justify-between py-6 md:space-x-10">
+      <div class="flex items-center justify-between py-1 md:space-x-10">
         <div class="flex justify-start lg:w-0 lg:flex-1">
-          <a href="/">
+          <router-link to="/">
             <span class="sr-only">Workflow</span>
             <img
               class="w-auto h-10 sm:h-12"
               src="../../public/Logo.png"
               alt=""
             />
-          </a>
+          </router-link>
         </div>
+        <router-link
+          to="/categories"
+          class="text-xl font-semibold sm:text-2xl text-fgreen hover:text-fgreen-dark1 hover:underline hover:underline-offset-8"
+          >Categorias</router-link
+        >
         <div class="" v-if="isLogged">
           <PopoverButton
             class="inline-flex items-center justify-center p-2 rounded-full text-fgreen hover:bg-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500"
@@ -25,13 +30,13 @@
         </div>
         <div class="flex items-center justify-end flex-1 lg:w-0" v-else>
           <div class="hidden space-x-2 md:block">
-            <a href="/login">
-              <VButton variant="primary"> Iniciar sesión </VButton></a
+            <router-link to="/login">
+              <VButton variant="primary"> Iniciar sesión </VButton></router-link
             >
 
-            <a href="/register">
+            <router-link to="/register">
               <VButton variant="terciary"> Registrarse </VButton>
-            </a>
+            </router-link>
           </div>
           <div class="space-x-2 md:hidden">
             <PopoverButton
@@ -83,10 +88,10 @@
             </div>
             <div class="mt-6">
               <nav class="grid gap-y-8">
-                <a
+                <router-link
                   v-for="item in solutions"
                   :key="item.name"
-                  :href="item.href"
+                  :to="item.href"
                   class="flex items-center p-3 -m-3 rounded-md hover:bg-gray-50"
                 >
                   <component
@@ -97,7 +102,7 @@
                   <span class="ml-3 text-base font-medium text-gray-900">
                     {{ item.name }}
                   </span>
-                </a>
+                </router-link>
               </nav>
             </div>
           </div>
@@ -119,17 +124,23 @@
               </router-link>
             </div>
             <div v-if="!isLogged">
-              <a href="/register" class="flex items-center justify-center">
+              <router-link
+                to="/register"
+                class="flex items-center justify-center"
+              >
                 <VButton variant="secondary" class="w-full">
                   Registrarse
                 </VButton>
-              </a>
+              </router-link>
               <p class="mt-6 text-base font-medium text-center text-gray-500">
                 ¿Ya tienes cuenta?
                 {{ " " }}
-                <a href="/login" class="text-fpurple hover:text-fpurple-dark1">
+                <router-link
+                  to="/login"
+                  class="text-fpurple hover:text-fpurple-dark1"
+                >
                   Inicia sesión
-                </a>
+                </router-link>
               </p>
             </div>
             <VButton v-else variant="secondary" @click="logOut">
