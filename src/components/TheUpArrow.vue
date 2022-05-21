@@ -19,3 +19,9 @@ const arrow = {
   },
 };
 </script>
+
+<style>
+html {
+  scroll-behavior: smooth;
+}
+</style>
