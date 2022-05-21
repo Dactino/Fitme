@@ -11,21 +11,7 @@
     "
   />
   <TheHeader />
-  <div class="space-y-8">
-    <div class="flex flex-wrap gap-8 p-8">
-      <div
-        v-for="exercise in exercises"
-        :key="exercise.id"
-        class="py-8 space-y-4"
-      >
-        <div v-if="exercise.id != 'Descanso'">
-          <AExercise class="flex" :exercise="exercise" />
-          <VButton @click="checkOp(exercise.id)">Eliminar</VButton>
-        </div>
-      </div>
-    </div>
-    <AdminExerciseForm @addExercise="addExercise" :categories="categories" />
-  </div>
+
   <TheSuccessAlert
     v-if="alert[0]"
     @close="
@@ -36,6 +22,25 @@
       !alert[1] ? 'Ejercicio creado con éxito' : 'Ejercicio eliminado con éxito'
     "
   />
+
+  <div class="space-y-8">
+    <div class="flex flex-wrap gap-8 p-8">
+      <div
+        v-for="exercise in exercises"
+        :key="exercise.id"
+        class="py-8 space-y-4"
+      >
+        <div
+          v-if="exercise.id != 'Descanso'"
+          class="flex flex-col justify-center"
+        >
+          <AExercise class="flex" :exercise="exercise" />
+          <VButton @click="checkOp(exercise.id)">Eliminar</VButton>
+        </div>
+      </div>
+    </div>
+    <AdminExerciseForm @addExercise="addExercise" :categories="categories" />
+  </div>
 </template>
 
 <script setup>
