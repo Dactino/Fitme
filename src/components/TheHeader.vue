@@ -2,7 +2,7 @@
   <Popover class="relative bg-fpurple">
     <div class="px-4 mx-auto max-w-7xl sm:px-6">
       <div class="flex items-center justify-between py-1 md:space-x-10">
-        <div class="flex justify-start lg:flex-1 lg:w-0">
+        <div class="flex justify-start flex-1 lg:w-0">
           <router-link to="/">
             <span class="sr-only">Workflow</span>
             <img
