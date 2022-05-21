@@ -1,6 +1,7 @@
-<!-- This example requires Tailwind CSS v2.0+ -->
 <template>
-  <div class="absolute w-1/4 p-4 rounded-md bg-fgreen-light2 right-1 top-20">
+  <div
+    class="sticky top-0 float-right w-full p-4 md:rounded-md md:m-2 md:top-2 md:w-1/4 bg-fgreen-light2"
+  >
     <div class="flex">
       <div class="flex-shrink-0">
         <CheckCircleIcon class="w-5 h-5 text-fgreen" aria-hidden="true" />
